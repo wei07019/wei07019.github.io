@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/same.css" />
+		<link rel="stylesheet" type="text/css" href="../css/reset.css"  />
+		<link rel="stylesheet" type="text/css" href="../css/shopcart.css"  />
+		<script src="../js/handlebars.min.js"></script>
+		<script src="../js/CookieUtil.js"></script>
+		<script src="../js/jquery-1.12.4.min.js"></script>
+	</head>
+	<body>
+		<div id="loadtop">
+			
+		</div>
+		<div id="loadheader">
+			
+		</div>
+		
+		<div id="loadnav">
+			
+		</div>
+		<script>
+			$(function() {
+				$("#loadheader").load("../file/header.html");
+				$("#loadnav").load("../file/nav.html");
+				$("#loadtop").load("../file/top.html");
+			})
+		</script>
+		<div id="shopwrap">
+			<div id="shopcard">
+				<table width="100%" border="0" cellpadding="0" style="border-collapse: collapse;">
+					<tbody align="left">
+						<tr>
+							<th class="mycardth" height="32" align="left" valign="middle" bgcolor="#fff" scope="col">
+								<span class="mycardtxt">我的购物车</span>
+							</td>
+							<th class="payth" width="176" height="32" align="left" valign="middle" bgcolor="#ffc" scope="col">
+								<span class="paytxt">购物车借算</span>
+							</th>
+						</tr>
+						<tr valign="top">
+							<td bgcolor="#fff">
+								<table id="cartlist" width="100%" cellpadding="0" cellspacing="0">
+									<tbody>
+										<tr>
+											<td width="60" height="32" >
+												<input class="checkall" type="checkbox" checked/>
+												全选
+											</td>
+											<td>商品名称</td>
+											<td align="center" width="100">单价</td>
+											<td width="70" align="center">数量</td>
+											<td width="96" align="center">小计</td>
+											<td width="80" align="center">操作</td>
+										</tr>
+									</tbody>
+									<tbody id="goodslist">
+										<!--<tr>
+											<td align="center" valign="middle" class="check">
+												<input  type="checkbox" />
+											</td>
+											<td valign="top" class="goodsname">
+												<dl>
+													<dt>
+														<a href="#"><img src="" /></a>
+													</dt>
+													<dd>
+														<div class="title">
+															<a href="">afdsafafeafsefsa</a>
+														</div>
+														<div class="huodong">
+															
+														</div>
+													</dd>
+												</dl>
+											</td>
+											<td align="center" valign="middle" class="price">
+												<b>￥</b><span>8888.00</span>
+											</td>
+											<td align="center" valign="middle" class="count">
+												<div>
+													<p><input type="text" value="1" /></p>
+													<input class="btn1" type="button" value="-"/>
+													<input class="btn2"type="button" value="+" />
+												</div>
+											</td>
+											<td align="center" valign="middle" class="xiaoji">
+												<b>￥</b><span>8888.00</span>
+											</td>
+											<td align="center" valign="middle" class="caozuo">
+												<p class="del"><a href="javascript:void(0)">移除</a></p>
+												<p><a href="javascript:void(0)">加入收藏夹</a></p>
+											</td>
+										</tr>-->
+									</tbody>
+								</table>
+							</td>
+							<td class="paycon" align="center" valign="top" bgcolor="#ffc">
+								<h2>总价</h2>
+								<b>￥</b><span></span>
+							</td>
+						</tr>
+					</tbody>
+					
+				</table>
+			</div>
+		</div>
+		<div id="loadhelp">
+			
+		</div>
+		<div id="loadfooter">
+			
+		</div>
+		<script>
+			$(function() {
+				$("#loadfooter").load("../file/footer.html");
+				$("#loadhelp").load("../file/help.html");
+			})
+		</script>
+		<!--购物车模板-->
+		<script id="shopcarttemp" type="text/x-handlebars-template">
+			{{#each this}}
+				<tr>
+					<td align="center" valign="middle" class="check">
+						<input  type="checkbox" checked/>
+					</td>
+					<td valign="top" class="goodsname">
+						<dl>
+							<dt>
+								<a href="#"><img src="../images/{{this.image}}" /></a>
+							</dt>
+							<dd>
+								<div class="title">
+									<a href="#">{{this.title}}</a>
+								</div>
+								<div class="huodong">
+									
+								</div>
+							</dd>
+						</dl>
+					</td>
+					<td align="center" valign="middle" class="price">
+						<b>￥</b><span>{{this.price}}</span>
+					</td>
+					<td align="center" valign="middle" class="count">
+						<div>
+							<p><input type="text" value="{{this.count}}" /></p>
+							<input class="btn1" type="button" value="-"/>
+							<input class="btn2" type="button" value="+" />
+						</div>
+					</td>
+					<td align="center" valign="middle" class="xiaoji">
+						<b>￥</b><span>{{this.count}}*{{this.price}}</span>
+					</td>
+					<td align="center" valign="middle" class="caozuo">
+						<p class="del"><a href="javascript:void(0)">移除</a></p>
+						<p><a href="javascript:void(0)">加入收藏夹</a></p>
+					</td>
+				</tr>
+			{{/each}}
+		</script>
+		<script>
+			$(function() {
+				var cookie = CookieUtil.getCookie("goods");	
+				var zongjia = 0;
+				if(cookie != null) {
+					var cookiearr = JSON.parse(cookie);
+					var temp = $("#shopcarttemp").html();
+					var tempFn = Handlebars.compile(temp);
+					var htmlstr = tempFn(cookiearr);
+					//console.log(htmlstr);
+					//console.dir(cookiearr);
+					$("#shopcard #goodslist").html(htmlstr);
+					//创建节点并初始化					
+					for(var i = 0,len = cookiearr.length;i < len; i++) {
+						var xiaoji = cookiearr[i].count * cookiearr[i].price;
+						zongjia += xiaoji;
+						$("#shopcard #goodslist .xiaoji span").eq(i).html( xiaoji);
+						if(cookiearr[i].count == 1){
+							$("#shopcard #goodslist .btn1").eq(i).attr("disabled",true);
+						}
+					}
+					console.log(zongjia);
+					$("#shopcard .paycon span").eq(0).html(zongjia);
+				}
+				var $btn1 = $("#shopcard #goodslist .btn1");
+				var $btn2 = $("#shopcard #goodslist .btn2");
+				var $count = $("#shopcard #goodslist input[type=text]");
+				var $xiaoji = $("#shopcard #goodslist .xiaoji span");
+				var $pay = $("#shopcard .paycon span").eq(0);
+				//加号
+				$btn2.click(function() {
+					//修改导航条上的购物车计数
+					var $navcount = $("#navwrap .cli1 .count");
+					if($navcount != null) {
+						var navcount = Number($navcount.html());
+						navcount++;
+						$navcount.html(navcount);
+					}
+					var index = $btn2.index(this);
+					$btn1.eq(index).attr("disabled",false);
+					var count = Number($count.eq(index).val());
+					count++;					
+					$count.eq(index).val(count);
+					var xiaoji = Number($xiaoji.eq(index).html()) + Number(cookiearr[index].price);
+					$xiaoji.eq(index).html(xiaoji);
+					zongjia += Number(cookiearr[index].price);
+					$pay.html(zongjia);
+					cookiearr[index].count = count;
+					CookieUtil.saveCookie("goods",JSON.stringify(cookiearr));
+				});
+				//减号
+				$btn1.click(function() {
+					//导航条购物车计数
+					var $navcount = $("#navwrap .cli1 .count");
+					if($navcount != null) {
+						var navcount = Number($navcount.html());
+						navcount--;
+						$navcount.html(navcount);
+					}
+					var index = $btn1.index(this);
+					var count = Number($count.eq(index).val());
+					count--;
+					$count.eq(index).val(count);
+					var xiaoji = Number($xiaoji.eq(index).html()) - Number(cookiearr[index].price);
+					$xiaoji.eq(index).html(xiaoji);
+					zongjia -= Number(cookiearr[index].price);
+					$pay.html(zongjia);
+					cookiearr[index].count = count;
+					CookieUtil.saveCookie("goods",JSON.stringify(cookiearr));
+					if(count = 1) {
+						$(this).attr("disabled",true)
+					}					
+				});
+				$count.keyup(function() {
+					var count = $(this).val();
+					if(isNaN(count)) {
+						count = count.substring(0,count.length - 1);
+						$(this).val(count);
+					}						
+				});
+				$count.blur(function() {
+					var count = $(this).val();
+					var index = $count.index(this);
+					if(count.length == 0) {
+						count = 1;
+					}
+					$(this).val(count);
+					var xiaoji = count * cookiearr[index].price;
+					$xiaoji.eq(index).html(xiaoji);
+					//导航条购物车计数
+					var $navcount = $("#navwrap .cli1 .count");
+					if($navcount != null) {
+						var navcount = Number($navcount.html());
+						navcount += Number(count) - Number(cookiearr[index].count);
+						$navcount.html(navcount);
+					}
+					zongjia = zongjia + (Number(count) - Number(cookiearr[index].count)) * cookiearr[index].price;
+					$pay.html(zongjia);
+					cookiearr[index].count = count;
+					CookieUtil.saveCookie("goods",JSON.stringify(cookiearr));
+				});
+				$("#shopcard #goodslist .del").click(function() {
+					var index = $("#shopcard #goodslist .del").index(this);
+					//导航条购物车计数
+					var $navcount = $("#navwrap .cli1 .count");
+					if($navcount != null) {
+						var navcount = Number($navcount.html());
+						navcount -= cookiearr[index].count;
+						$navcount.html(navcount);
+					}
+					zongjia -= cookiearr[index].count * cookiearr[index].price;
+					$pay.html(zongjia);
+					cookiearr.splice(index,1);
+					CookieUtil.saveCookie("goods",JSON.stringify(cookiearr));
+					$("#shopcard #goodslist").children().eq(index).remove();
+				})
+			});			
+		</script>
+	</body>
+</html>

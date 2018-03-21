@@ -1,0 +1,51 @@
+<div class="topwrap">
+	<div class="top">
+		<ul class="left">
+			<li>
+				<a class="phone" href="javascript:">掌上新蛋</a>
+			</li>
+			<li>
+				<a class="buy" href="javascript:">企业团购</a>
+			</li>
+		</ul>
+		<div class="right">
+			<a href="../html/login.html">登录</a>
+			<b> | </b>
+			<a href="../html/register.html">注册</a>
+			<span id="welcom">晚上好,欢迎来新蛋购物!</span>
+			<ul class="tnav">
+				<li>
+					<a href="#">我的订单</a>
+				</li>
+				<li class="spli">
+					<a href="#">我的新蛋
+						<i></i>
+					</a>
+					<div id="myinfo"></div>
+				</li>
+				<li>
+					<a href="#">帮助中心</a>
+				</li>
+				<li class="spli">
+					<a href="#">客户服务
+						<i></i>
+					</a>
+					<div id="service"></div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<script>
+	$(function() {
+		$(".spli").hover(function() {
+			$(this).css({
+				background: "#fff"
+			}).children("#service").css("display", "block");
+		}, function() {
+			$(this).css({
+				background: ""
+			}).children("#service").css("display", "none");
+		})
+	})
+</script>

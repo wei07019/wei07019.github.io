@@ -1,0 +1,63 @@
+<!--header-->
+<div id="header">
+	<a id="logo" href="goodlist.html"></a>
+	<div class="center">
+		<div class="searchbox">
+			<input id="searchtxt" type="text" value="9月苹果季 最高直降800元！" />
+			<a class="search" href="javascript:void(0)">搜索</a>
+			<ul class="searchlist">
+				
+			</ul>
+		</div>
+		
+		<div id="hot">
+			<a href="html/goodlist.html">移动硬盘</a>
+			<b>|</b>
+			<a href="html/goodlist.html">移动硬盘</a>
+			<b>|</b>
+			<a href="html/goodlist.html">移动硬盘</a>
+			<b>|</b>
+			<a href="html/goodlist.html">移动硬盘</a>
+		</div>
+	</div>
+	<a class="right"><img src="../images/all.gif"/></a>
+</div>
+<script>
+	var txtEle = document.getElementById("searchtxt");
+	var txt = txtEle.getAttribute("value");
+	txtEle.onfocus = function() {
+		if(txtEle.value == txt) {
+			txtEle.value = "";
+		}
+	}
+	txtEle.onblur = function() {
+		if(txtEle.value.length == 0) {
+			txtEle.value = txt;
+		}
+	}
+	//搜索功能
+	$(function() {
+		$(txtEle).keyup(function() {
+			$.ajax({
+				url: "https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su",
+				dataType: "jsonp",
+				data: {wd:$(this).val()},
+				jsonp: "cb",
+				success: function(res) {
+					var arr = res.s;
+					var htmlstr = "";
+					for(var i = 0,len = arr.length;i < len;i++) {
+						htmlstr += "<li>" + arr[i] + "</li>";
+					}
+					$("#header .searchbox .searchlist").eq(0).html(htmlstr);
+				}
+			})
+		});
+		$("#header .searchlist").on("click","li",function() {
+			window.location.href = "https://www.baidu.com/s?wd=" + $(this).html();
+		});
+		$(window).click(function() {
+			$("#header .searchlist").html("");
+		})
+	})
+</script>

@@ -1,0 +1,7 @@
+@charset "utf-8";
+html,body,ul,li,div,p,a,span,img,b,input,h1,h2,h3,h4,h5,h6,dl,dd,dt,input,select{margin:0;padding:0;}
+html,body{font-size:12px;font-family:tahoma,\5b8b\4f53!important;color:#484848;line-height:1.5;}
+ul,li{list-style:none;}
+img{border:0;}
+a{text-decoration:none;color:#666;display:inline-block;}
+a:hover{text-decoration:underline;}

@@ -1,0 +1,2223 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/same.css" />
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<script src="js/jquery-1.12.4.min.js"></script>
+		<script src="js/plug_tab.js"></script>
+		<script src="js/plug_playimg.js"></script>
+		<script src="js/CookieUtil.js"></script>
+	</head>
+
+	<body>
+		<div id="toTop">
+			回到顶部
+		</div>
+		<script>
+			$(function() {
+				var timer = null;
+				var $toTop = $("#toTop");
+				$toTop.click(function() {
+					$("body,html").animate({
+						scrollTop: 0
+					}, 400);
+				})
+				$(window).scroll(function() {
+					clearTimeout(timer);
+					$toTop.stop(true).css({
+						display: "none"
+					});
+					setTimeout(function() {
+						if($(window).scrollTop() != 0) {
+							$toTop.fadeIn(400);
+						}
+					}, 400);
+
+				});
+				hidtoTop();
+
+				function hidtoTop() {
+					if($(window).scrollTop() == 0) {
+						$toTop.css("display", "none")
+					}
+				}
+			});
+		</script>
+		<!-- top -->
+		<div class="topwrap">
+			<div class="top">
+				<ul class="left">
+					<li>
+						<a class="phone" href="javascript:">掌上新蛋</a>
+					</li>
+					<li>
+						<a class="buy" href="javascript:">企业团购</a>
+					</li>
+				</ul>
+				<div class="right">
+					<a href="html/login.html">登录</a>
+					<b> | </b>
+					<a href="html/register.html">注册</a>
+					<span id="welcom">晚上好,欢迎来新蛋购物!</span>
+					<ul class="tnav">
+						<li>
+							<a href="html/shopcart.html">我的订单</a>
+						</li>
+						<li class="spli">
+							<a href="html/goodlist.html">我的新蛋
+								<i></i>
+							</a>
+							<div id="myinfo"></div>
+						</li>
+						<li>
+							<a href="javascript:void(0)s">帮助中心</a>
+						</li>
+						<li class="spli">
+							<a href="javascript:void(0)">客户服务
+								<i></i>
+							</a>
+							<div id="service"></div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<script>
+			$(function() {
+				$(".spli").hover(function() {
+					$(this).css({
+						background: "#fff"
+					}).children("#service").css("display", "block");
+				}, function() {
+					$(this).css({
+						background: ""
+					}).children("#service").css("display", "none");
+				})
+			})
+		</script>
+
+		<!--header-->
+		<div id="header">
+			<a id="logo" href="html/goodlist.html"></a>
+			<div class="center">
+				<div class="searchbox">
+					<input id="searchtxt" type="text" value="9月苹果季 最高直降800元！" />
+					<a class="search" href="javascript:void(0)">搜索</a>
+					<ul class="searchlist">
+
+					</ul>
+				</div>
+
+				<div id="hot">
+					<a href="html/goodlist.html">移动硬盘</a>
+					<b>|</b>
+					<a href="html/goodlist.html">移动硬盘</a>
+					<b>|</b>
+					<a href="html/goodlist.html">移动硬盘</a>
+					<b>|</b>
+					<a href="html/goodlist.html">移动硬盘</a>
+				</div>
+			</div>
+			<a class="right"><img src="images/all.gif" /></a>
+		</div>
+		<script>
+			var txtEle = document.getElementById("searchtxt");
+			var txt = txtEle.getAttribute("value");
+			txtEle.onfocus = function() {
+				if(txtEle.value == txt) {
+					txtEle.value = "";
+				}
+			}
+			txtEle.onblur = function() {
+					if(txtEle.value.length == 0) {
+						txtEle.value = txt;
+					}
+				}
+				//搜索功能
+			$(function() {
+				$(txtEle).keyup(function() {
+					$.ajax({
+						url: "https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su",
+						dataType: "jsonp",
+						data: {
+							wd: $(this).val()
+						},
+						jsonp: "cb",
+						success: function(res) {
+							var arr = res.s;
+							var htmlstr = "";
+							for(var i = 0, len = arr.length; i < len; i++) {
+								htmlstr += "<li>" + arr[i] + "</li>";
+							}
+							$("#header .searchbox .searchlist").eq(0).html(htmlstr);
+						}
+					})
+				});
+				$("#header .searchlist").on("click", "li", function() {
+					window.location.href = "https://www.baidu.com/s?wd=" + $(this).html();
+				});
+				$(window).click(function() {
+					$("#header .searchlist").html("");
+				})
+			})
+		</script>
+
+		<!--nav-->
+		<div id="navwrap">
+			<div class="wrap">
+				<div class="shopping">
+					<div class="mycard">
+						<i></i>
+						<a class="cli cli1" href="html/shopcart.html">购物车
+							<span class="count">0</span>件
+						</a>
+						<div class="con con1">
+
+						</div>
+					</div>
+					<div class="favor">
+						<span class="line"></span>
+						<i></i>
+						<a class="cli cli2" href="html/goodlist.html">收藏提醒</a>
+						<div class="con con2">
+
+						</div>
+					</div>
+				</div>
+				<ul class="nav">
+					<li>
+						<a href="index.html">首页</a>
+					</li>
+					<li>
+						<a href="html/goodlist.html">限时抢购</a>
+					</li>
+					<li>
+						<a href="html/goodlist.html">团团赚</a>
+					</li>
+					<li>
+						<a href="html/goodlist.html">海外直购</a>
+					</li>
+					<li>
+						<a href="html/goodlist.html">爱车配</a>
+					</li>
+					<li>
+						<a href="html/goodlist.html">二手宝库</a>
+					</li>
+				</ul>
+				<div>
+					<a id="alllist" href="html/goodlist.html">全部商品分类</a>
+					<ul id="menu">
+						<li class="item">
+							<div class="itemlink">
+								<div class="itemicon"></div>
+								<h4><a href="html/goodlist.html">海外直购</a></h4>
+								<div class="lc">
+									<a href="html/goodlist.html">影音</a>
+									<a href="html/goodlist.html">固态硬盘</a>
+									<a href="html/goodlist.html">奶粉</a>
+								</div>
+							</div>
+							<div class="itemall">
+								<table>
+									<tbody>
+										<tr>
+											<th>数码外设</th>
+											<td>
+												<a href="html/goodlist.html">耳机</a>
+												<span>|</span>
+												<a href="html/goodlist.html">电脑外设</a>
+												<span>|</span>
+												<a href="html/goodlist.html">手机配件</a>
+												<span>|</span>
+												<a href="html/goodlist.html">音响</a>
+												<span>|</span>
+												<a href="html/goodlist.html">网络设备</a>
+												<span>|</span>
+												<a href="html/goodlist.html">办公设备</a>
+												<span>|</span>
+												<a href="html/goodlist.html">U盘/存储卡</a>
+											</td>
+										</tr>
+										<tr>
+											<th>数码外设</th>
+											<td>
+												<a href="html/goodlist.html">耳机</a>
+												<span>|</span>
+												<a href="html/goodlist.html">电脑外设</a>
+												<span>|</span>
+												<a href="html/goodlist.html">手机配件</a>
+												<span>|</span>
+												<a href="html/goodlist.html">音响</a>
+												<span>|</span>
+												<a href="html/goodlist.html">网络设备</a>
+												<span>|</span>
+												<a href="html/goodlist.html">办公设备</a>
+												<span>|</span>
+												<a href="html/goodlist.html">U盘/存储卡</a>
+											</td>
+										</tr>
+										<tr>
+											<th>数码外设</th>
+											<td>
+												<a href="html/goodlist.html">耳机</a>
+												<span>|</span>
+												<a href="html/goodlist.html">电脑外设</a>
+												<span>|</span>
+												<a href="html/goodlist.html">手机配件</a>
+												<span>|</span>
+												<a href="html/goodlist.html">音响</a>
+												<span>|</span>
+												<a href="html/goodlist.html">网络设备</a>
+												<span>|</span>
+												<a href="html/goodlist.html">办公设备</a>
+												<span>|</span>
+												<a href="html/goodlist.html">U盘/存储卡</a>
+												<span>|</span>
+												<a href="html/goodlist.html">音响</a>
+												<span>|</span>
+												<a href="html/goodlist.html">网络设备</a>
+												<span>|</span>
+												<a href="html/goodlist.html">办公设备</a>
+												<span>|</span>
+												<a href="html/goodlist.html">U盘/存储卡</a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</li>
+						<li class="item">
+							<div class="itemlink">
+								<div class="itemicon"></div>
+								<h4><a href="html/goodlist.html">海外直购</a></h4>
+								<div class="lc">
+									<a href="html/goodlist.html">影音</a>
+									<a href="html/goodlist.html">固态硬盘</a>
+									<a href="html/goodlist.html">奶粉</a>
+								</div>
+							</div>
+							<div class="itemall">
+								<table>
+									<tbody>
+										<tr>
+											<th>数码外设</th>
+											<td>
+												<a href="html/goodlist.html">耳机</a>
+												<span>|</span>
+												<a href="html/goodlist.html">电脑外设</a>
+												<span>|</span>
+												<a href="html/goodlist.html">手机配件</a>
+												<span>|</span>
+												<a href="html/goodlist.html">音响</a>
+												<span>|</span>
+												<a href="html/goodlist.html">网络设备</a>
+												<span>|</span>
+												<a href="html/goodlist.html">办公设备</a>
+												<span>|</span>
+												<a href="html/goodlist.html">U盘/存储卡</a>
+											</td>
+										</tr>
+										<tr>
+											<th>数码外设</th>
+											<td>
+												<a href="html/goodlist.html">耳机</a>
+												<span>|</span>
+												<a href="html/goodlist.html">电脑外设</a>
+												<span>|</span>
+												<a href="html/goodlist.html">手机配件</a>
+												<span>|</span>
+												<a href="html/goodlist.html">音响</a>
+												<span>|</span>
+												<a href="html/goodlist.html">网络设备</a>
+												<span>|</span>
+												<a href="html/goodlist.html">办公设备</a>
+												<span>|</span>
+												<a href="html/goodlist.html">U盘/存储卡</a>
+											</td>
+										</tr>
+										<tr>
+											<th>数码外设</th>
+											<td>
+												<a href="html/goodlist.html">耳机</a>
+												<span>|</span>
+												<a href="html/goodlist.html">电脑外设</a>
+												<span>|</span>
+												<a href="html/goodlist.html">手机配件</a>
+												<span>|</span>
+												<a href="html/goodlist.html">音响</a>
+												<span>|</span>
+												<a href="html/goodlist.html">网络设备</a>
+												<span>|</span>
+												<a href="html/goodlist.html">办公设备</a>
+												<span>|</span>
+												<a href="html/goodlist.html">U盘/存储卡</a>
+												<span>|</span>
+												<a href="html/goodlist.html">音响</a>
+												<span>|</span>
+												<a href="html/goodlist.html">网络设备</a>
+												<span>|</span>
+												<a href="html/goodlist.html">办公设备</a>
+												<span>|</span>
+												<a href="html/goodlist.html">U盘/存储卡</a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</li>
+						<li class="item">
+							<div class="itemlink">
+								<div class="itemicon"></div>
+								<h4><a href="html/goodlist.html">海外直购</a></h4>
+								<div class="lc">
+									<a href="html/goodlist.html">影音</a>
+									<a href="html/goodlist.html">固态硬盘</a>
+									<a href="html/goodlist.html">奶粉</a>
+								</div>
+							</div>
+							<div class="itemall">
+								<table>
+									<tbody>
+										<tr>
+											<th>数码外设</th>
+											<td>
+												<a href="html/goodlist.html">耳机</a>
+												<span>|</span>
+												<a href="html/goodlist.html">电脑外设</a>
+												<span>|</span>
+												<a href="html/goodlist.html">手机配件</a>
+												<span>|</span>
+												<a href="html/goodlist.html">音响</a>
+												<span>|</span>
+												<a href="html/goodlist.html">网络设备</a>
+												<span>|</span>
+												<a href="html/goodlist.html">办公设备</a>
+												<span>|</span>
+												<a href="html/goodlist.html">U盘/存储卡</a>
+											</td>
+										</tr>
+										<tr>
+											<th>数码外设</th>
+											<td>
+												<a href="html/goodlist.html">耳机</a>
+												<span>|</span>
+												<a href="html/goodlist.html">电脑外设</a>
+												<span>|</span>
+												<a href="html/goodlist.html">手机配件</a>
+												<span>|</span>
+												<a href="html/goodlist.html">音响</a>
+												<span>|</span>
+												<a href="html/goodlist.html">网络设备</a>
+												<span>|</span>
+												<a href="html/goodlist.html">办公设备</a>
+												<span>|</span>
+												<a href="html/goodlist.html">U盘/存储卡</a>
+											</td>
+										</tr>
+										<tr>
+											<th>数码外设</th>
+											<td>
+												<a href="html/goodlist.html">耳机</a>
+												<span>|</span>
+												<a href="html/goodlist.html">电脑外设</a>
+												<span>|</span>
+												<a href="html/goodlist.html">手机配件</a>
+												<span>|</span>
+												<a href="html/goodlist.html">音响</a>
+												<span>|</span>
+												<a href="html/goodlist.html">网络设备</a>
+												<span>|</span>
+												<a href="html/goodlist.html">办公设备</a>
+												<span>|</span>
+												<a href="html/goodlist.html">U盘/存储卡</a>
+												<span>|</span>
+												<a href="html/goodlist.html">音响</a>
+												<span>|</span>
+												<a href="html/goodlist.html">网络设备</a>
+												<span>|</span>
+												<a href="html/goodlist.html">办公设备</a>
+												<span>|</span>
+												<a href="html/goodlist.html">U盘/存储卡</a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+
+							</div>
+						</li>
+						<li class="item">
+							<div class="itemlink">
+								<div class="itemicon"></div>
+								<h4><a href="html/goodlist.html">海外直购</a></h4>
+								<div class="lc">
+									<a href="html/goodlist.html">影音</a>
+									<a href="html/goodlist.html">固态硬盘</a>
+									<a href="html/goodlist.html">奶粉</a>
+								</div>
+							</div>
+							<div class="itemall">
+								<table>
+									<tbody>
+										<tr>
+											<th>数码外设</th>
+											<td>
+												<a href="html/goodlist.html">耳机</a>
+												<span>|</span>
+												<a href="html/goodlist.html">电脑外设</a>
+												<span>|</span>
+												<a href="html/goodlist.html">手机配件</a>
+												<span>|</span>
+												<a href="html/goodlist.html">音响</a>
+												<span>|</span>
+												<a href="html/goodlist.html">网络设备</a>
+												<span>|</span>
+												<a href="html/goodlist.html">办公设备</a>
+												<span>|</span>
+												<a href="html/goodlist.html">U盘/存储卡</a>
+											</td>
+										</tr>
+										<tr>
+											<th>数码外设</th>
+											<td>
+												<a href="html/goodlist.html">耳机</a>
+												<span>|</span>
+												<a href="html/goodlist.html">电脑外设</a>
+												<span>|</span>
+												<a href="html/goodlist.html">手机配件</a>
+												<span>|</span>
+												<a href="html/goodlist.html">音响</a>
+												<span>|</span>
+												<a href="html/goodlist.html">网络设备</a>
+												<span>|</span>
+												<a href="html/goodlist.html">办公设备</a>
+												<span>|</span>
+												<a href="html/goodlist.html">U盘/存储卡</a>
+											</td>
+										</tr>
+										<tr>
+											<th>数码外设</th>
+											<td>
+												<a href="html/goodlist.html">耳机</a>
+												<span>|</span>
+												<a href="html/goodlist.html">电脑外设</a>
+												<span>|</span>
+												<a href="html/goodlist.html">手机配件</a>
+												<span>|</span>
+												<a href="html/goodlist.html">音响</a>
+												<span>|</span>
+												<a href="html/goodlist.html">网络设备</a>
+												<span>|</span>
+												<a href="html/goodlist.html">办公设备</a>
+												<span>|</span>
+												<a href="html/goodlist.html">U盘/存储卡</a>
+												<span>|</span>
+												<a href="html/goodlist.html">音响</a>
+												<span>|</span>
+												<a href="html/goodlist.html">网络设备</a>
+												<span>|</span>
+												<a href="html/goodlist.html">办公设备</a>
+												<span>|</span>
+												<a href="html/goodlist.html">U盘/存储卡</a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+
+							</div>
+						</li>
+						<li class="item lastitem">
+							<div class="itemlink">
+								<div class="itemicon"></div>
+								<h4><a href="html/goodlist.html">海外直购</a></h4>
+							</div>
+							<ul class="itemmenu">
+								<li class="item">
+
+									<div class="itemlink">
+										<div class="lc">
+											<a href="html/goodlist.html">影音</a>
+											<a href="html/goodlist.html">固态硬盘</a>
+											<a href="html/goodlist.html">奶粉</a>
+										</div>
+									</div>
+									<div class="itemall">
+										<table>
+											<tbody>
+												<tr>
+													<th>数码外设</th>
+													<td>
+														<a href="html/goodlist.html">耳机</a>
+														<span>|</span>
+														<a href="html/goodlist.html">电脑外设</a>
+														<span>|</span>
+														<a href="html/goodlist.html">手机配件</a>
+														<span>|</span>
+														<a href="html/goodlist.html">音响</a>
+														<span>|</span>
+														<a href="html/goodlist.html">网络设备</a>
+														<span>|</span>
+														<a href="html/goodlist.html">办公设备</a>
+														<span>|</span>
+														<a href="html/goodlist.html">U盘/存储卡</a>
+													</td>
+												</tr>
+												<tr>
+													<th>数码外设</th>
+													<td>
+														<a href="html/goodlist.html">耳机</a>
+														<span>|</span>
+														<a href="html/goodlist.html">电脑外设</a>
+														<span>|</span>
+														<a href="html/goodlist.html">手机配件</a>
+														<span>|</span>
+														<a href="html/goodlist.html">音响</a>
+														<span>|</span>
+														<a href="html/goodlist.html">网络设备</a>
+														<span>|</span>
+														<a href="html/goodlist.html">办公设备</a>
+														<span>|</span>
+														<a href="html/goodlist.html">U盘/存储卡</a>
+													</td>
+												</tr>
+												<tr>
+													<th>数码外设</th>
+													<td>
+														<a href="html/goodlist.html">耳机</a>
+														<span>|</span>
+														<a href="html/goodlist.html">电脑外设</a>
+														<span>|</span>
+														<a href="html/goodlist.html">手机配件</a>
+														<span>|</span>
+														<a href="html/goodlist.html">音响</a>
+														<span>|</span>
+														<a href="html/goodlist.html">网络设备</a>
+														<span>|</span>
+														<a href="html/goodlist.html">办公设备</a>
+														<span>|</span>
+														<a href="html/goodlist.html">U盘/存储卡</a>
+														<span>|</span>
+														<a href="html/goodlist.html">音响</a>
+														<span>|</span>
+														<a href="html/goodlist.html">网络设备</a>
+														<span>|</span>
+														<a href="html/goodlist.html">办公设备</a>
+														<span>|</span>
+														<a href="html/goodlist.html">U盘/存储卡</a>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+
+									</div>
+								</li>
+								<li class="item">
+									<div class="itemlink">
+										<div class="lc">
+											<a href="html/goodlist.html">影音</a>
+											<a href="html/goodlist.html">固态硬盘</a>
+											<a href="html/goodlist.html">奶粉</a>
+										</div>
+									</div>
+									<div class="itemall">
+										<table>
+											<tbody>
+												<tr>
+													<th>数码外设</th>
+													<td>
+														<a href="html/goodlist.html">耳机</a>
+														<span>|</span>
+														<a href="html/goodlist.html">电脑外设</a>
+														<span>|</span>
+														<a href="html/goodlist.html">手机配件</a>
+														<span>|</span>
+														<a href="html/goodlist.html">音响</a>
+														<span>|</span>
+														<a href="html/goodlist.html">网络设备</a>
+														<span>|</span>
+														<a href="html/goodlist.html">办公设备</a>
+														<span>|</span>
+														<a href="html/goodlist.html">U盘/存储卡</a>
+													</td>
+												</tr>
+												<tr>
+													<th>数码外设</th>
+													<td>
+														<a href="html/goodlist.html">耳机</a>
+														<span>|</span>
+														<a href="html/goodlist.html">电脑外设</a>
+														<span>|</span>
+														<a href="html/goodlist.html">手机配件</a>
+														<span>|</span>
+														<a href="html/goodlist.html">音响</a>
+														<span>|</span>
+														<a href="html/goodlist.html">网络设备</a>
+														<span>|</span>
+														<a href="html/goodlist.html">办公设备</a>
+														<span>|</span>
+														<a href="html/goodlist.html">U盘/存储卡</a>
+													</td>
+												</tr>
+												<tr>
+													<th>数码外设</th>
+													<td>
+														<a href="html/goodlist.html">耳机</a>
+														<span>|</span>
+														<a href="html/goodlist.html">电脑外设</a>
+														<span>|</span>
+														<a href="html/goodlist.html">手机配件</a>
+														<span>|</span>
+														<a href="html/goodlist.html">音响</a>
+														<span>|</span>
+														<a href="html/goodlist.html">网络设备</a>
+														<span>|</span>
+														<a href="html/goodlist.html">办公设备</a>
+														<span>|</span>
+														<a href="html/goodlist.html">U盘/存储卡</a>
+														<span>|</span>
+														<a href="html/goodlist.html">音响</a>
+														<span>|</span>
+														<a href="html/goodlist.html">网络设备</a>
+														<span>|</span>
+														<a href="html/goodlist.html">办公设备</a>
+														<span>|</span>
+														<a href="html/goodlist.html">U盘/存储卡</a>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+
+									</div>
+								</li>
+								<li class="item">
+									<div class="itemlink">
+										<div class="lc">
+											<a href="html/goodlist.html">影音</a>
+											<a href="html/goodlist.html">固态硬盘</a>
+											<a href="html/goodlist.html">奶粉</a>
+										</div>
+									</div>
+									<div class="itemall">
+										<table>
+											<tbody>
+												<tr>
+													<th>数码外设</th>
+													<td>
+														<a href="html/goodlist.html">耳机</a>
+														<span>|</span>
+														<a href="html/goodlist.html">电脑外设</a>
+														<span>|</span>
+														<a href="html/goodlist.html">手机配件</a>
+														<span>|</span>
+														<a href="html/goodlist.html">音响</a>
+														<span>|</span>
+														<a href="html/goodlist.html">网络设备</a>
+														<span>|</span>
+														<a href="html/goodlist.html">办公设备</a>
+														<span>|</span>
+														<a href="html/goodlist.html">U盘/存储卡</a>
+													</td>
+												</tr>
+												<tr>
+													<th>数码外设</th>
+													<td>
+														<a href="html/goodlist.html">耳机</a>
+														<span>|</span>
+														<a href="html/goodlist.html">电脑外设</a>
+														<span>|</span>
+														<a href="html/goodlist.html">手机配件</a>
+														<span>|</span>
+														<a href="html/goodlist.html">音响</a>
+														<span>|</span>
+														<a href="html/goodlist.html">网络设备</a>
+														<span>|</span>
+														<a href="html/goodlist.html">办公设备</a>
+														<span>|</span>
+														<a href="html/goodlist.html">U盘/存储卡</a>
+													</td>
+												</tr>
+												<tr>
+													<th>数码外设</th>
+													<td>
+														<a href="html/goodlist.html">耳机</a>
+														<span>|</span>
+														<a href="html/goodlist.html">电脑外设</a>
+														<span>|</span>
+														<a href="html/goodlist.html">手机配件</a>
+														<span>|</span>
+														<a href="html/goodlist.html">音响</a>
+														<span>|</span>
+														<a href="html/goodlist.html">网络设备</a>
+														<span>|</span>
+														<a href="html/goodlist.html">办公设备</a>
+														<span>|</span>
+														<a href="html/goodlist.html">U盘/存储卡</a>
+														<span>|</span>
+														<a href="html/goodlist.html">音响</a>
+														<span>|</span>
+														<a href="html/goodlist.html">网络设备</a>
+														<span>|</span>
+														<a href="html/goodlist.html">办公设备</a>
+														<span>|</span>
+														<a href="html/goodlist.html">U盘/存储卡</a>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+
+									</div>
+								</li>
+								<li class="item">
+									<div class="itemlink">
+										<div class="lc">
+											<a href="html/goodlist.html">影音</a>
+											<a href="html/goodlist.html">固态硬盘</a>
+											<a href="html/goodlist.html">奶粉</a>
+										</div>
+									</div>
+									<div class="itemall">
+										<table>
+											<tbody>
+												<tr>
+													<th>数码外设</th>
+													<td>
+														<a href="html/goodlist.html">耳机</a>
+														<span>|</span>
+														<a href="html/goodlist.html">电脑外设</a>
+														<span>|</span>
+														<a href="html/goodlist.html">手机配件</a>
+														<span>|</span>
+														<a href="html/goodlist.html">音响</a>
+														<span>|</span>
+														<a href="html/goodlist.html">网络设备</a>
+														<span>|</span>
+														<a href="html/goodlist.html">办公设备</a>
+														<span>|</span>
+														<a href="html/goodlist.html">U盘/存储卡</a>
+													</td>
+												</tr>
+												<tr>
+													<th>数码外设</th>
+													<td>
+														<a href="html/goodlist.html">耳机</a>
+														<span>|</span>
+														<a href="html/goodlist.html">电脑外设</a>
+														<span>|</span>
+														<a href="html/goodlist.html">手机配件</a>
+														<span>|</span>
+														<a href="html/goodlist.html">音响</a>
+														<span>|</span>
+														<a href="html/goodlist.html">网络设备</a>
+														<span>|</span>
+														<a href="html/goodlist.html">办公设备</a>
+														<span>|</span>
+														<a href="html/goodlist.html">U盘/存储卡</a>
+													</td>
+												</tr>
+												<tr>
+													<th>数码外设</th>
+													<td>
+														<a href="html/goodlist.html">耳机</a>
+														<span>|</span>
+														<a href="html/goodlist.html">电脑外设</a>
+														<span>|</span>
+														<a href="html/goodlist.html">手机配件</a>
+														<span>|</span>
+														<a href="html/goodlist.html">音响</a>
+														<span>|</span>
+														<a href="html/goodlist.html">网络设备</a>
+														<span>|</span>
+														<a href="html/goodlist.html">办公设备</a>
+														<span>|</span>
+														<a href="html/goodlist.html">U盘/存储卡</a>
+														<span>|</span>
+														<a href="html/goodlist.html">音响</a>
+														<span>|</span>
+														<a href="html/goodlist.html">网络设备</a>
+														<span>|</span>
+														<a href="html/goodlist.html">办公设备</a>
+														<span>|</span>
+														<a href="html/goodlist.html">U盘/存储卡</a>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+
+									</div>
+								</li>
+								<li class="item">
+									<div class="itemlink">
+										<div class="lc">
+											<a href="html/goodlist.html">影音</a>
+											<a href="html/goodlist.html">固态硬盘</a>
+											<a href="html/goodlist.html">奶粉</a>
+										</div>
+									</div>
+									<div class="itemall">
+										<table>
+											<tbody>
+												<tr>
+													<th>数码外设</th>
+													<td>
+														<a href="html/goodlist.html">耳机</a>
+														<span>|</span>
+														<a href="html/goodlist.html">电脑外设</a>
+														<span>|</span>
+														<a href="html/goodlist.html">手机配件</a>
+														<span>|</span>
+														<a href="html/goodlist.html">音响</a>
+														<span>|</span>
+														<a href="html/goodlist.html">网络设备</a>
+														<span>|</span>
+														<a href="html/goodlist.html">办公设备</a>
+														<span>|</span>
+														<a href="html/goodlist.html">U盘/存储卡</a>
+													</td>
+												</tr>
+												<tr>
+													<th>数码外设</th>
+													<td>
+														<a href="html/goodlist.html">耳机</a>
+														<span>|</span>
+														<a href="html/goodlist.html">电脑外设</a>
+														<span>|</span>
+														<a href="html/goodlist.html">手机配件</a>
+														<span>|</span>
+														<a href="html/goodlist.html">音响</a>
+														<span>|</span>
+														<a href="html/goodlist.html">网络设备</a>
+														<span>|</span>
+														<a href="html/goodlist.html">办公设备</a>
+														<span>|</span>
+														<a href="html/goodlist.html">U盘/存储卡</a>
+													</td>
+												</tr>
+												<tr>
+													<th>数码外设</th>
+													<td>
+														<a href="html/goodlist.html">耳机</a>
+														<span>|</span>
+														<a href="html/goodlist.html">电脑外设</a>
+														<span>|</span>
+														<a href="html/goodlist.html">手机配件</a>
+														<span>|</span>
+														<a href="html/goodlist.html">音响</a>
+														<span>|</span>
+														<a href="html/goodlist.html">网络设备</a>
+														<span>|</span>
+														<a href="html/goodlist.html">办公设备</a>
+														<span>|</span>
+														<a href="html/goodlist.html">U盘/存储卡</a>
+														<span>|</span>
+														<a href="html/goodlist.html">音响</a>
+														<span>|</span>
+														<a href="html/goodlist.html">网络设备</a>
+														<span>|</span>
+														<a href="html/goodlist.html">办公设备</a>
+														<span>|</span>
+														<a href="html/goodlist.html">U盘/存储卡</a>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+
+									</div>
+								</li>
+							</ul>
+
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<script>
+			$(function() {
+				$("#menu .item").not(".lastitem").mouseenter(function(evt) {
+					$("#menu").css("backgroundColor", "#eee");
+					$(this).css("background-color", "#fff").find(".itemall").eq(0).css("display", "block");
+					$("#menu .item .itemlink").css("background-image", "none")
+				});
+				$("#menu .item").not(".lsatitem").mouseleave(function(evt) {
+					$("#menu").css("background-color", "#fff");
+					$(this).css("background-color", "").find(".itemall").eq(0).css("display", "none").prev();
+					$("#menu .item .itemlink").css("background-image", "url(images/sprite_v140425.png)");
+					$("#menu .lastitem .item .itemlink").css("background-image", "none")
+
+				});
+			})
+		</script>
+		<script>
+			$(function() {
+				var cookie = CookieUtil.getCookie("goods");
+				if(cookie != null) {
+					var count = 0;
+					var cookiearr = JSON.parse(cookie);
+					for(var i = 0, len = cookiearr.length; i < len; i++) {
+						count += Number(cookiearr[i].count);
+					}
+					$("#navwrap .shopping .count").eq(0).html(count);
+				}
+			})
+		</script>
+		<!--section-->
+		<div id="section">
+			<div class="secl">
+				<div class="secltop">
+					<ul class="imgwrap">
+						<li style="display:list-item;">
+							<a href="html/goodlist.html"><img src="images/0771x245.jpg" alt="" /></a>
+						</li>
+						<li>
+							<a href="html/goodlist.html"><img src="images/771X245.jpg" alt="" /></a>
+						</li>
+						<li>
+							<a href="html/goodlist.html"><img src="images/771X245(1).jpg" alt="" /></a>
+						</li>
+						<li>
+							<a href="html/goodlist.html"><img src="images/771X245(2).jpg" alt="" /></a>
+						</li>
+						<li>
+							<a href="html/goodlist.html"><img src="images/771X245(3).jpg" alt="" /></a>
+						</li>
+						<li>
+							<a href="html/goodlist.html"><img src="images/771x245b.jpg" alt="" /></a>
+						</li>
+						<li>
+							<a href="html/goodlist.html"><img src="images/iphone7a771245.jpg" alt="" /></a>
+						</li>
+						<li>
+							<a href="html/goodlist.html"><img src="images/ej771245a.jpg" alt="" /></a>
+						</li>
+					</ul>
+					<ul class="indexwrap">
+						<li class="round firstround">1</li>
+						<li class="round">2</li>
+						<li class="round">3</li>
+						<li class="round">4</li>
+						<li class="round">5</li>
+						<li class="round">6</li>
+						<li class="round">7</li>
+						<li class="round">8</li>
+					</ul>
+				</div>
+				<script>
+					$(function() {
+						var index = 0;
+						var timer = null;
+						var $imgs = $("#section .secl .imgwrap").find("li");
+						var $rounds = $("#section .secl .indexwrap").find(".round");
+						timer = setInterval(changeimg, 1000);
+
+						function changeimg() {
+							index++;
+							if(index >= $imgs.size()) {
+								index = 0;
+							}
+							showimg();
+						}
+
+						function showimg() {
+							$imgs.eq(index).stop(true).fadeIn(300).siblings().stop(true).fadeOut(300);
+							$rounds.eq(index).css({
+								backgroundPositionX: "left"
+							}).siblings().css({
+								backgroundPositionX: -35
+							})
+						}
+						$("#section .indexwrap").on("mouseover", ".round", function(evt) {
+							index = $(evt.target).index();
+							showimg();
+						})
+						$("#section .secltop").mouseenter(function() {
+							clearInterval(timer);
+						}).mouseleave(function() {
+							timer = setInterval(changeimg, 1000);
+						})
+					})
+				</script>
+				<div class="timerbuy">
+					<h2>限时抢购</h2>
+					<div id="showtime">
+						<i>剩余时间:</i>
+						<span class="hours">00</span>:
+						<span class="minutes">00</span>:
+						<span class="seconds">00</span>
+					</div>
+					<script src="js/plug_endtime.js"></script>
+					<script>
+						$("#showtime").endtime();
+					</script>
+					<a class="more" href="html/goodlist.html">抢购更多物品</a>
+					<div class="goodsswrap">
+						<a class="abtn gleft" href="javascript:">左移</a>
+						<div class="goodslist">
+							<ul>
+								<li class="item">
+									<p class="img">
+										<a href="html/goodlist.html"><img src="" /></a>
+									</p>
+									<p class="title">
+										<a href="html/goodlist.html"></a>
+									</p>
+									<p class="price"></p>
+								</li>
+							</ul>
+							<script>
+								$(function() {
+									$.ajax({
+										url: "goods.json",
+										async: true,
+										type: "get",
+										dataType: "json",
+										timeout: 10000,
+										success: function(res) {
+											var htmlstr = "";
+											for(var i = 0; i < 8; i++) {
+												var str = res.data[i];
+												htmlstr += '<li class="item">' +
+													'<p class="img">' +
+													'<a href="html/goodlist.html"><img src="images/' + str.image + '"/></a>' +
+													'</p>' +
+													'<p class="title"><a href="html/goodlist.html">' + str.name + '</a></p>' +
+													'<p class="price">￥' + str.price + '</p>' +
+													'</li>';
+											}
+											$("#section .goodslist ul").eq(0).html(htmlstr);
+										}
+									});
+								});
+							</script>
+						</div>
+						<a class="abtn gright" href="javascript:">右移</a>
+						<script>
+							$(function() {
+								var ifleft = true;
+								var timer = setInterval(play, 5000);
+
+								function play() {
+									if(ifleft) {
+										moveleft();
+									} else {
+										moveright();
+									}
+								}
+
+								function moveleft() {
+									$("#section .goodslist").find("ul").stop(true).animate({
+										left: -744
+									}, 300);
+									ifleft = false;
+								}
+
+								function moveright() {
+									$("#section .goodslist").find("ul").stop(true).animate({
+										left: 0
+									}, 300);
+									ifleft = true;
+								}
+								$("#section .goodsswrap").mouseenter(function() {
+									clearInterval(timer);
+								}).mouseleave(function() {
+									timer = setInterval(play, 5000);
+								})
+								$("#section .gleft").click(moveright);
+								$("#section .gright").click(moveleft);
+							})
+						</script>
+					</div>
+				</div>
+			</div>
+			<div class="secr">
+				<div class="imgwrap">
+					<ul class="picwrap">
+						<li class="img firstimg">
+							<a href="html/goodlist.html"><img src="images/226x241_5.jpg" /></a>
+						</li>
+						<li class="img">
+							<a href="html/goodlist.html"><img src="images/226x241_6.jpg" /></a>
+						</li>
+						<li class="img">
+							<a href="html/goodlist.html"><img src="images/226x241_7.jpg" /></a>
+						</li>
+						<li class="img">
+							<a href="html/goodlist.html"><img src="images/226x241_8.jpg" /></a>
+						</li>
+						<li class="img">
+							<a href="html/goodlist.html"><img src="images/226x241_9.jpg" /></a>
+						</li>
+					</ul>
+					<ul class="roundwrap">
+						<li class="round selector">1</li>
+						<li class="round">2</li>
+						<li class="round">3</li>
+						<li class="round">4</li>
+						<li class="round">5</li>
+					</ul>
+					<script>
+						$(function() {
+							var $imgs = $("#section .secr .img");
+							var $rounds = $("#section .secr .round");
+							$("#section .secr .imgwrap").playImg({
+								imgs: $imgs,
+								rounds: $rounds,
+								selector: "selector"
+							});
+						});
+					</script>
+				</div>
+				<div class="ttz">
+					<a href="html/goodlist.html"><img src="images/230x218_1.jpg" /></a>
+				</div>
+			</div>
+		</div>
+
+		<!--hot-->
+		<div id="hotwrap">
+			<div class="hot">
+				<h2 class="htitle">热卖区</h2>
+				<div class="hottitle">
+					<a href="javascript:void(0)">换一批</a>
+					<span>热卖促销商品，不容错过，更多惊喜等你发现</span>
+				</div>
+				<div class="hotlist">
+					<ul>
+						<li class="hotitem">
+							<i>活动标签</i>
+							<a class="img" href="html/goodlist.html"><img src="" /></a>
+							<a class="title" href="html/goodlist.html"></a>
+							<span class="price"></span>
+							<a class="buy" href="html/goodlist.html"></a>
+						</li>
+					</ul>
+				</div>
+				<script>
+					$(function() {
+						$.ajax({
+							url: "goods.json",
+							async: true,
+							type: "get",
+							dataType: "json",
+							timeout: 5000,
+							success: function(res) {
+								var htmlstr = "";
+								for(var i = 0; i < 12; i++) {
+									var str = res.data[i];
+									htmlstr += '<li class="hotitem">' +
+										'<i>活动标签</i>' +
+										'<a class ="img" href="html/goodlist.html"><img src="images/' + str.image + '"/></a>' +
+										'<a class="title" href="html/goodlist.html">' + str.name + '</a>' +
+										'<span class="price">￥' + str.price + '</span>' +
+										'<a class="buy" href="html/goodlist.html">抢购</a>' +
+										'</li>';
+								}
+								$("#hotwrap .hotlist").children().eq(0).html(htmlstr);
+							}
+						});
+					})
+				</script>
+				<script>
+					$(function() {
+						var $ul = $("#hotwrap .hotlist").children().eq(0);
+						var changeleft = 239 * 4;
+						var count = 0; //页面数
+						$("#hotwrap .hottitle").children().eq(0).click(function() {
+							count++;
+							if(count < 3) {
+								$ul.stop(true).animate({
+									left: -changeleft * count
+								}, 300);
+							} else {
+								$ul.stop(true).css("left", 0);
+								count = 0;
+							}
+						})
+					});
+				</script>
+			</div>
+			<div class="hotright">
+				<div class="news">
+					<h3>新蛋动态</h3>
+					<a class="more" href="html/goodlist.html">更多&gt;&gt;</a>
+					<ul class="newslist">
+						<li>
+							<a href="html/goodlist.html">iPhone7预售活动</a>
+						</li>
+						<li>
+							<a href="html/goodlist.html">iPhone7预售活动</a>
+						</li>
+						<li>
+							<a href="html/goodlist.html">iPhone7预售活动</a>
+						</li>
+						<li>
+							<a href="html/goodlist.html">iPhone7预售活动</a>
+						</li>
+					</ul>
+				</div>
+				<div class="phone">
+					<h3>手机充值</h3>
+					<p>手机号<input type="text" /></p>
+					<p>面&nbsp;&nbsp;&nbsp;值
+						<select>
+							<option>100</option>
+							<option>50</option>
+						</select>
+					</p>
+					<a class="cz" href="">立即充值</a>
+				</div>
+			</div>
+		</div>
+
+		<!--good-->
+		<div id="goodwrap">
+			<h2 class="htitle">
+				好评热品
+			</h2>
+			<span class="goodtitle">热门好评商品，不要错过哦</span>
+			<div class="goodslist">
+				<ul>
+					<li class="item first">
+						<div class="intro1">
+							<div class="intro1con">
+								<p>Apple 苹果 MacBook 12英寸 MMGL2CH/A 玫瑰金色 - 1.1GHz/8GB/256GB 闪存/Retina 显示屏</p>
+								<span>推荐度</span>
+								<span>5人已评价</span>
+								<img src="images/A1I-184-01U.jpg" />
+							</div>
+						</div>
+						<div class="intro2">
+							<a class="img" href="html/goodlist.html"><img src="images/A1O-184-01J.jpg"></a>
+							<div class="intro2con">
+								<div class="intro2title">
+									<b>推荐度100%</b>
+									<a href="html/goodlist.html">Apple 苹果 iPad Pro WLAN版 9.7英寸 128GB 玫瑰金色 MM192CH/A</a>
+								</div>
+								<p>包装很好，非常漂亮的东西!第一次用苹果家的东西,对系统还不太熟悉,但是用起来十分流畅。游戏玩起来很好。屏幕大看起来也舒服。电量也十分充足!重要的是送货好快，第二天早上就收到咯</p>
+							</div>
+						</div>
+					</li>
+					<li class="item">
+						<div class="intro1">
+							<div class="intro1con">
+								<p>Apple 苹果 MacBook 12英寸 MMGL2CH/A 玫瑰金色 - 1.1GHz/8GB/256GB 闪存/Retina 显示屏</p>
+								<span>推荐度</span>
+								<span>5人已评价</span>
+								<img src="images/A1I-184-01U.jpg" />
+							</div>
+						</div>
+						<div class="intro2">
+							<a class="img" href="html/goodlist.html"><img src="images/A1O-184-01J.jpg"></a>
+							<div class="intro2con">
+								<div class="intro2title">
+									<b>推荐度100%</b>
+									<a href="html/goodlist.html">Apple 苹果 iPad Pro WLAN版 9.7英寸 128GB 玫瑰金色 MM192CH/A</a>
+								</div>
+								<p>包装很好，非常漂亮的东西!第一次用苹果家的东西,对系统还不太熟悉,但是用起来十分流畅。游戏玩起来很好。屏幕大看起来也舒服。电量也十分充足!重要的是送货好快，第二天早上就收到咯</p>
+							</div>
+					</li>
+					<li class="item">
+						<div class="intro1">
+							<div class="intro1con">
+								<p>Apple 苹果 MacBook 12英寸 MMGL2CH/A 玫瑰金色 - 1.1GHz/8GB/256GB 闪存/Retina 显示屏</p>
+								<span>推荐度</span>
+								<span>5人已评价</span>
+								<img src="images/A1I-184-01U.jpg" />
+							</div>
+						</div>
+						<div class="intro2">
+							<a class="img" href="html/goodlist.html"><img src="images/A1O-184-01J.jpg"></a>
+							<div class="intro2con">
+								<div class="intro2title">
+									<b>推荐度100%</b>
+									<a href="html/goodlist.html">Apple 苹果 iPad Pro WLAN版 9.7英寸 128GB 玫瑰金色 MM192CH/A</a>
+								</div>
+								<p>包装很好，非常漂亮的东西!第一次用苹果家的东西,对系统还不太熟悉,但是用起来十分流畅。游戏玩起来很好。屏幕大看起来也舒服。电量也十分充足!重要的是送货好快，第二天早上就收到咯</p>
+							</div>
+					</li>
+					<li class="item">
+						<div class="intro1">
+							<div class="intro1con">
+								<p>Apple 苹果 MacBook 12英寸 MMGL2CH/A 玫瑰金色 - 1.1GHz/8GB/256GB 闪存/Retina 显示屏</p>
+								<span>推荐度</span>
+								<span>5人已评价</span>
+								<img src="images/A1I-184-01U.jpg" />
+							</div>
+						</div>
+						<div class="intro2">
+							<a class="img" href="html/goodlist.html"><img src="images/A1O-184-01J.jpg"></a>
+							<div class="intro2con">
+								<div class="intro2title">
+									<b>推荐度100%</b>
+									<a href="html/goodlist.html">Apple 苹果 iPad Pro WLAN版 9.7英寸 128GB 玫瑰金色 MM192CH/A</a>
+								</div>
+								<p>包装很好，非常漂亮的东西!第一次用苹果家的东西,对系统还不太熟悉,但是用起来十分流畅。游戏玩起来很好。屏幕大看起来也舒服。电量也十分充足!重要的是送货好快，第二天早上就收到咯</p>
+							</div>
+					</li>
+				</ul>
+				</div>
+				<script>
+					$(function() {
+						var $item = $("#goodwrap").find(".item");
+						$item.mouseenter(function() {
+							$(this).children(".intro1").css("display", "none").next().css("display", "block");
+							$(this).siblings().children(".intro2").css("display", "none").prev().css("display", "block");
+							$(this).stop(true, true).animate({
+								width: 672
+							}, 300).siblings().stop(true, true).animate({
+								width: 174
+							}, 300);
+						});
+					})
+				</script>
+				</div>
+
+				<!--itemcf-->
+				<div id="itemcf">
+					<div id="itemcfwrap">
+						<div class="left">
+							<ul class="tab">
+								<li class="active">您也许感兴趣</li>
+								<li>新品发布</li>
+								<li>发烧好评</li>
+								<li class="last">狠惠配</li>
+							</ul>
+							<ul class="tabc activec">
+								<li>
+									<a href="html/goodlist.html"><img src="images/A1O-184-01J.jpg"/></a>
+									<a class="tabctitle" href="html/goodlist.html">Apple 苹果 iPad Pro WLAN版 9.7英寸 128GB 玫瑰金色 </a>
+									<span>￥8880.00</span>
+								</li>
+								<li>
+									<a href="html/goodlist.html"><img src="images/A1O-184-01J.jpg"/></a>
+									<a class="tabctitle" href="html/goodlist.html">Apple 苹果 iPad Pro WLAN版 9.7英寸 128GB 玫瑰金色 </a>
+									<span>￥8880.00</span>
+								</li>
+								<li>
+									<a href="html/goodlist.html"><img src="images/A1O-184-01J.jpg"/></a>
+									<a class="tabctitle" href="html/goodlist.html">Apple 苹果 iPad Pro WLAN版 9.7英寸 128GB 玫瑰金色 </a>
+									<span>￥8880.00</span>
+								</li>
+								<li>
+									<a href="html/goodlist.html"><img src="images/A1O-184-01J.jpg"/></a>
+									<a class="tabctitle" href="html/goodlist.html">Apple 苹果 iPad Pro WLAN版 9.7英寸 128GB 玫瑰金色 </a>
+									<span>￥8880.00</span>
+								</li>
+								<li>
+									<a href="html/goodlist.html"><img src="images/A1O-184-01J.jpg"/></a>
+									<a class="tabctitle" href="html/goodlist.html">Apple 苹果 iPad Pro WLAN版 9.7英寸 128GB 玫瑰金色 </a>
+									<span>￥8880.00</span>
+								</li>
+							</ul>
+							<ul class="tabc">
+								<li>
+									<a href="html/goodlist.html"><img src="images/A1O-184-01J.jpg"/></a>
+									<a class="tabctitle" href="html/goodlist.html">Apple 苹果 iPad Pro WLAN版 9.7英寸 128GB 玫瑰金色 </a>
+									<span>￥8880.00</span>
+								</li>
+								<li>
+									<a href="html/goodlist.html"><img src="images/A1O-184-01J.jpg"/></a>
+									<a class="tabctitle" href="html/goodlist.html">Apple 苹果 iPad Pro WLAN版 9.7英寸 128GB 玫瑰金色 </a>
+									<span>￥8880.00</span>
+								</li>
+							</ul>
+							<ul class="tabc">
+								<li>
+									<a href="html/goodlist.html"><img src="images/A1O-184-01J.jpg"/></a>
+									<a class="tabctitle" href="html/goodlist.html">Apple 苹果 iPad Pro WLAN版 9.7英寸 128GB 玫瑰金色 </a>
+									<span>￥8880.00</span>
+								</li>
+								<li>
+									<a href="html/goodlist.html"><img src="images/A1O-184-01J.jpg"/></a>
+									<a class="tabctitle" href="html/goodlist.html">Apple 苹果 iPad Pro WLAN版 9.7英寸 128GB 玫瑰金色 </a>
+									<span>￥8880.00</span>
+								</li>
+								<li>
+									<a href="html/goodlist.html"><img src="images/A1O-184-01J.jpg"/></a>
+									<a class="tabctitle" href="html/goodlist.html">Apple 苹果 iPad Pro WLAN版 9.7英寸 128GB 玫瑰金色 </a>
+									<span>￥8880.00</span>
+								</li>
+							</ul>
+							<ul class="tabc">
+								<li>
+									<a href="html/goodlist.html"><img src="images/A1O-184-01J.jpg"/></a>
+									<a class="tabctitle" href="html/goodlist.html">Apple 苹果 iPad Pro WLAN版 9.7英寸 128GB 玫瑰金色 </a>
+									<span>￥8880.00</span>
+								</li>
+								<li>
+									<a href="html/goodlist.html"><img src="images/A1O-184-01J.jpg"/></a>
+									<a class="tabctitle" href="html/goodlist.html">Apple 苹果 iPad Pro WLAN版 9.7英寸 128GB 玫瑰金色 </a>
+									<span>￥8880.00</span>
+								</li>
+								<li>
+									<a href="html/goodlist.html"><img src="images/A1O-184-01J.jpg"/></a>
+									<a class="tabctitle" href="html/goodlist.html">Apple 苹果 iPad Pro WLAN版 9.7英寸 128GB 玫瑰金色 </a>
+									<span>￥8880.00</span>
+								</li>
+								<li>
+									<a href="html/goodlist.html"><img src="images/A1O-184-01J.jpg"/></a>
+									<a class="tabctitle" href="html/goodlist.html">Apple 苹果 iPad Pro WLAN版 9.7英寸 128GB 玫瑰金色 </a>
+									<span>￥8880.00</span>
+								</li>
+							</ul>
+							<script>
+								var $tab = $("#itemcf .tab").children("li");
+								var $tabc = $("#itemcf .tabc");
+								$.tab_change({
+									tab: $tab,
+									tabc: $tabc,
+									active: "active",
+									activec: "activec"
+								});
+							</script>
+
+						</div>
+						<div class="right">
+							<ul class="picwrap">
+								<li class="img firstimg">
+									<a href="html/goodlist.html"><img src="images/238x268_1.jpg" /></a>
+								</li>
+								<li class="img">
+									<a href="html/goodlist.html"><img src="images/238x268.jpg" /></a>
+								</li>
+								<li class="img">
+									<a href="html/goodlist.html"><img src="images/iphone7a238268.jpg" /></a>
+								</li>
+								<li class="img">
+									<a href="html/goodlist.html"><img src="images/238x268_2.jpg" /></a>
+								</li>
+								<li class="img">
+									<a href="html/goodlist.html"><img src="images/238x268_3.jpg" /></a>
+								</li>
+								<li class="img">
+									<a href="html/goodlist.html"><img src="images/238x268_4.jpg" /></a>
+								</li>
+								<li class="img">
+									<a href="html/goodlist.html"><img src="images/238x268_5.jpg" /></a>
+								</li>
+							</ul>
+							<ul class="roundwrap">
+								<li class="round selector">1</li>
+								<li class="round">2</li>
+								<li class="round">3</li>
+								<li class="round">4</li>
+								<li class="round">5</li>
+								<li class="round">6</li>
+								<li class="round">7</li>
+							</ul>
+							<script>
+								$(function() {
+									var $imgs = $("#itemcf .right .img");
+									var $rounds = $("#itemcf .right .round");
+									$("#itemcf .right").playImg({
+										imgs: $imgs,
+										rounds: $rounds,
+										selector: "selector"
+									});
+								});
+							</script>
+						</div>
+					</div>
+				</div>
+
+				<!--content-->
+				<div id="content">
+					<div class="conleft">
+						<div class="coninfo">
+							<h3>手机·摄影</h3>
+							<div class="goodswrap">
+								<ul>
+									<li class="item">
+										<i>活动图标</i>
+										<a class="goodsimg" href="html/goodlist.html"><img src="images/A0O-403-1L9.jpg" /></a>
+										<p class="title">
+											<a href="html/goodlist.html">【新蛋自营 正品保证】 心脏管家 睡眠助手 远程关爱 运动跟踪</a>
+										</p>
+										<span class="price">¥8889.00</span>
+									</li>
+									<li class="imgitem">
+										<ul class="imgwrap">
+											<li class="img firstimg">
+												<a href="html/goodlist.html"><img src="images/banner.jpg" /></a>
+											</li>
+											<li class="img">
+												<a href="html/goodlist.html"><img src="images/480x205.jpg" /></a>
+											</li>
+											<li class="img">
+												<a href="html/goodlist.html"><img src="images/480x205_1.jpg" /></a>
+											</li>
+											<li class="img">
+												<a href="html/goodlist.html"><img src="images/480x205_2.jpg" /></a>
+											</li>
+											<li class="img">
+												<a href="html/goodlist.html"><img src="images/480x205_3.jpg" /></a>
+											</li>
+											<li class="img">
+												<a href="html/goodlist.html"><img src="images/480x205_4.jpg" /></a>
+											</li>
+										</ul>
+										<ul class="roundwrap">
+											<li class="round active">1</li>
+											<li class="round">2</li>
+											<li class="round">3</li>
+											<li class="round">4</li>
+											<li class="round">5</li>
+											<li class="round">6</li>
+										</ul>
+									</li>
+									<li class="item">
+										<i>活动图标</i>
+										<a class="goodsimg" href="html/goodlist.html"><img src="images/A0O-403-1L9.jpg" /></a>
+										<p class="title">
+											<a href="html/goodlist.html">【新蛋自营 正品保证】 心脏管家 睡眠助手 远程关爱 运动跟踪</a>
+										</p>
+										<span class="price">¥8889.00</span>
+									</li>
+									<li class="item">
+										<i>活动图标</i>
+										<a class="goodsimg" href="html/goodlist.html"><img src="images/A0O-403-1L9.jpg" /></a>
+										<p class="title">
+											<a href="html/goodlist.html">【新蛋自营 正品保证】 心脏管家 睡眠助手 远程关爱 运动跟踪</a>
+										</p>
+										<span class="price">¥8889.00</span>
+									</li>
+									<li class="item">
+										<i>活动图标</i>
+										<a class="goodsimg" href="html/goodlist.html"><img src="images/A0O-403-1L9.jpg" /></a>
+										<p class="title">
+											<a href="html/goodlist.html">【新蛋自营 正品保证】 心脏管家 睡眠助手 远程关爱 运动跟踪</a>
+										</p>
+										<span class="price">¥8889.00</span>
+									</li>
+									<li class="item">
+										<i>活动图标</i>
+										<a class="goodsimg" href="html/goodlist.html"><img src="images/A0O-403-1L9.jpg" /></a>
+										<p class="title">
+											<a href="html/goodlist.html">【新蛋自营 正品保证】 心脏管家 睡眠助手 远程关爱 运动跟踪</a>
+										</p>
+										<span class="price">¥8889.00</span>
+									</li>
+									<li class="item">
+										<i>活动图标</i>
+										<a class="goodsimg" href="html/goodlist.html"><img src="images/A0O-403-1L9.jpg" /></a>
+										<p class="title">
+											<a href="html/goodlist.html">【新蛋自营 正品保证】 心脏管家 睡眠助手 远程关爱 运动跟踪</a>
+										</p>
+										<span class="price">¥8889.00</span>
+									</li>
+								</ul>
+							</div>
+							<div class="logowrap">
+
+							</div>
+						</div>
+						<div class="coninfo">
+							<h3 class="orange">手机·摄影</h3>
+							<div class="goodswrap">
+								<ul>
+									<li class="item">
+										<i>活动图标</i>
+										<a class="goodsimg" href="html/goodlist.html"><img src="images/A0O-403-1L9.jpg" /></a>
+										<p class="title">
+											<a href="html/goodlist.html">【新蛋自营 正品保证】 心脏管家 睡眠助手 远程关爱 运动跟踪</a>
+										</p>
+										<span class="price">¥8889.00</span>
+									</li>
+									<li class="imgitem">
+										<ul class="imgwrap">
+											<li class="img firstimg">
+												<a href="html/goodlist.html"><img src="images/banner.jpg" /></a>
+											</li>
+											<li class="img">
+												<a href="html/goodlist.html"><img src="images/480x205.jpg" /></a>
+											</li>
+											<li class="img">
+												<a href="html/goodlist.html"><img src="images/480x205_1.jpg" /></a>
+											</li>
+											<li class="img">
+												<a href="html/goodlist.html"><img src="images/480x205_2.jpg" /></a>
+											</li>
+											<li class="img">
+												<a href="html/goodlist.html"><img src="images/480x205_3.jpg" /></a>
+											</li>
+											<li class="img">
+												<a href="html/goodlist.html"><img src="images/480x205_4.jpg" /></a>
+											</li>
+										</ul>
+										<ul class="roundwrap">
+											<li class="round active">1</li>
+											<li class="round">2</li>
+											<li class="round">3</li>
+											<li class="round">4</li>
+											<li class="round">5</li>
+											<li class="round">6</li>
+										</ul>
+									</li>
+									<li class="item">
+										<i>活动图标</i>
+										<a class="goodsimg" href="html/goodlist.html"><img src="images/A0O-403-1L9.jpg" /></a>
+										<p class="title">
+											<a href="html/goodlist.html">【新蛋自营 正品保证】 心脏管家 睡眠助手 远程关爱 运动跟踪</a>
+										</p>
+										<span class="price">¥8889.00</span>
+									</li>
+									<li class="item">
+										<i>活动图标</i>
+										<a class="goodsimg" href="html/goodlist.html"><img src="images/A0O-403-1L9.jpg" /></a>
+										<p class="title">
+											<a href="html/goodlist.html">【新蛋自营 正品保证】 心脏管家 睡眠助手 远程关爱 运动跟踪</a>
+										</p>
+										<span class="price">¥8889.00</span>
+									</li>
+									<li class="item">
+										<i>活动图标</i>
+										<a class="goodsimg" href="html/goodlist.html"><img src="images/A0O-403-1L9.jpg" /></a>
+										<p class="title">
+											<a href="html/goodlist.html">【新蛋自营 正品保证】 心脏管家 睡眠助手 远程关爱 运动跟踪</a>
+										</p>
+										<span class="price">¥8889.00</span>
+									</li>
+									<li class="item">
+										<i>活动图标</i>
+										<a class="goodsimg" href="html/goodlist.html"><img src="images/A0O-403-1L9.jpg" /></a>
+										<p class="title">
+											<a href="html/goodlist.html">【新蛋自营 正品保证】 心脏管家 睡眠助手 远程关爱 运动跟踪</a>
+										</p>
+										<span class="price">¥8889.00</span>
+									</li>
+									<li class="item">
+										<i>活动图标</i>
+										<a class="goodsimg" href="html/goodlist.html"><img src="images/A0O-403-1L9.jpg" /></a>
+										<p class="title">
+											<a href="html/goodlist.html">【新蛋自营 正品保证】 心脏管家 睡眠助手 远程关爱 运动跟踪</a>
+										</p>
+										<span class="price">¥8889.00</span>
+									</li>
+								</ul>
+							</div>
+							<div class="logowrap">
+
+							</div>
+						</div>
+						<div class="coninfo">
+							<h3>手机·摄影</h3>
+							<div class="goodswrap">
+								<ul>
+									<li class="item">
+										<i>活动图标</i>
+										<a class="goodsimg" href="html/goodlist.html"><img src="images/A0O-403-1L9.jpg" /></a>
+										<p class="title">
+											<a href="html/goodlist.html">【新蛋自营 正品保证】 心脏管家 睡眠助手 远程关爱 运动跟踪</a>
+										</p>
+										<span class="price">¥8889.00</span>
+									</li>
+									<li class="imgitem">
+										<ul class="imgwrap">
+											<li class="img firstimg">
+												<a href="html/goodlist.html"><img src="images/banner.jpg" /></a>
+											</li>
+											<li class="img">
+												<a href="html/goodlist.html"><img src="images/480x205.jpg" /></a>
+											</li>
+											<li class="img">
+												<a href="html/goodlist.html"><img src="images/480x205_1.jpg" /></a>
+											</li>
+											<li class="img">
+												<a href="html/goodlist.html"><img src="images/480x205_2.jpg" /></a>
+											</li>
+											<li class="img">
+												<a href="html/goodlist.html"><img src="images/480x205_3.jpg" /></a>
+											</li>
+											<li class="img">
+												<a href="html/goodlist.html"><img src="images/480x205_4.jpg" /></a>
+											</li>
+										</ul>
+										<ul class="roundwrap">
+											<li class="round active">1</li>
+											<li class="round">2</li>
+											<li class="round">3</li>
+											<li class="round">4</li>
+											<li class="round">5</li>
+											<li class="round">6</li>
+										</ul>
+									</li>
+									<li class="item">
+										<i>活动图标</i>
+										<a class="goodsimg" href="html/goodlist.html"><img src="images/A0O-403-1L9.jpg" /></a>
+										<p class="title">
+											<a href="html/goodlist.html">【新蛋自营 正品保证】 心脏管家 睡眠助手 远程关爱 运动跟踪</a>
+										</p>
+										<span class="price">¥8889.00</span>
+									</li>
+									<li class="item">
+										<i>活动图标</i>
+										<a class="goodsimg" href="html/goodlist.html"><img src="images/A0O-403-1L9.jpg" /></a>
+										<p class="title">
+											<a href="html/goodlist.html">【新蛋自营 正品保证】 心脏管家 睡眠助手 远程关爱 运动跟踪</a>
+										</p>
+										<span class="price">¥8889.00</span>
+									</li>
+									<li class="item">
+										<i>活动图标</i>
+										<a class="goodsimg" href="html/goodlist.html"><img src="images/A0O-403-1L9.jpg" /></a>
+										<p class="title">
+											<a href="html/goodlist.html">【新蛋自营 正品保证】 心脏管家 睡眠助手 远程关爱 运动跟踪</a>
+										</p>
+										<span class="price">¥8889.00</span>
+									</li>
+									<li class="item">
+										<i>活动图标</i>
+										<a class="goodsimg" href="html/goodlist.html"><img src="images/A0O-403-1L9.jpg" /></a>
+										<p class="title">
+											<a href="html/goodlist.html">【新蛋自营 正品保证】 心脏管家 睡眠助手 远程关爱 运动跟踪</a>
+										</p>
+										<span class="price">¥8889.00</span>
+									</li>
+									<li class="item">
+										<i>活动图标</i>
+										<a class="goodsimg" href="html/goodlist.html"><img src="images/A0O-403-1L9.jpg" /></a>
+										<p class="title">
+											<a href="html/goodlist.html">【新蛋自营 正品保证】 心脏管家 睡眠助手 远程关爱 运动跟踪</a>
+										</p>
+										<span class="price">¥8889.00</span>
+									</li>
+								</ul>
+							</div>
+							<div class="logowrap">
+
+							</div>
+						</div>
+						<div class="coninfo">
+							<h3 class="orange">手机·摄影</h3>
+							<div class="goodswrap">
+								<ul>
+									<li class="item">
+										<i>活动图标</i>
+										<a class="goodsimg" href="html/goodlist.html"><img src="images/A0O-403-1L9.jpg" /></a>
+										<p class="title">
+											<a href="html/goodlist.html">【新蛋自营 正品保证】 心脏管家 睡眠助手 远程关爱 运动跟踪</a>
+										</p>
+										<span class="price">¥8889.00</span>
+									</li>
+									<li class="imgitem">
+										<ul class="imgwrap">
+											<li class="img firstimg">
+												<a href="html/goodlist.html"><img src="images/banner.jpg" /></a>
+											</li>
+											<li class="img">
+												<a href="html/goodlist.html"><img src="images/480x205.jpg" /></a>
+											</li>
+											<li class="img">
+												<a href="html/goodlist.html"><img src="images/480x205_1.jpg" /></a>
+											</li>
+											<li class="img">
+												<a href="html/goodlist.html"><img src="images/480x205_2.jpg" /></a>
+											</li>
+											<li class="img">
+												<a href="html/goodlist.html"><img src="images/480x205_3.jpg" /></a>
+											</li>
+											<li class="img">
+												<a href="html/goodlist.html"><img src="images/480x205_4.jpg" /></a>
+											</li>
+										</ul>
+										<ul class="roundwrap">
+											<li class="round active">1</li>
+											<li class="round">2</li>
+											<li class="round">3</li>
+											<li class="round">4</li>
+											<li class="round">5</li>
+											<li class="round">6</li>
+										</ul>
+									</li>
+									<li class="item">
+										<i>活动图标</i>
+										<a class="goodsimg" href="html/goodlist.html"><img src="images/A0O-403-1L9.jpg" /></a>
+										<p class="title">
+											<a href="html/goodlist.html">【新蛋自营 正品保证】 心脏管家 睡眠助手 远程关爱 运动跟踪</a>
+										</p>
+										<span class="price">¥8889.00</span>
+									</li>
+									<li class="item">
+										<i>活动图标</i>
+										<a class="goodsimg" href="html/goodlist.html"><img src="images/A0O-403-1L9.jpg" /></a>
+										<p class="title">
+											<a href="html/goodlist.html">【新蛋自营 正品保证】 心脏管家 睡眠助手 远程关爱 运动跟踪</a>
+										</p>
+										<span class="price">¥8889.00</span>
+									</li>
+									<li class="item">
+										<i>活动图标</i>
+										<a class="goodsimg" href="html/goodlist.html"><img src="images/A0O-403-1L9.jpg" /></a>
+										<p class="title">
+											<a href="html/goodlist.html">【新蛋自营 正品保证】 心脏管家 睡眠助手 远程关爱 运动跟踪</a>
+										</p>
+										<span class="price">¥8889.00</span>
+									</li>
+									<li class="item">
+										<i>活动图标</i>
+										<a class="goodsimg" href="html/goodlist.html"><img src="images/A0O-403-1L9.jpg" /></a>
+										<p class="title">
+											<a href="html/goodlist.html">【新蛋自营 正品保证】 心脏管家 睡眠助手 远程关爱 运动跟踪</a>
+										</p>
+										<span class="price">¥8889.00</span>
+									</li>
+									<li class="item">
+										<i>活动图标</i>
+										<a class="goodsimg" href="html/goodlist.html"><img src="images/A0O-403-1L9.jpg" /></a>
+										<p class="title">
+											<a href="html/goodlist.html">【新蛋自营 正品保证】 心脏管家 睡眠助手 远程关爱 运动跟踪</a>
+										</p>
+										<span class="price">¥8889.00</span>
+									</li>
+								</ul>
+							</div>
+							<script>
+								$(function() {
+									var $picwraps = $("#content .imgitem");
+									for(var i = 0, len = $picwraps.size(); i < len; i++) {
+										var $thiswrap = $picwraps.eq(i);
+										$thiswrap.playImg({
+											imgs: $thiswrap.find(".img"),
+											rounds: $thiswrap.find(".round"),
+											selector: "active"
+										})
+									}
+								})
+							</script>
+							<div class="logowrap">
+
+							</div>
+						</div>
+
+					</div>
+					<div class="conright">
+						<div class="menu">
+							<h2>热销榜</h2>
+							<ul class="tabwrap">
+								<li class="tab active">平板电视</li>
+								<li class="tab">剃须刀</li>
+								<li class="tab">电饭煲</li>
+							</ul>
+							<ul class="list activelist">
+								<li class="item">
+									<a class="img" href="html/goodlist.html"><img src="" /></a>
+									<a class="title" href="html/goodlist.html"></a>
+									<p class="price" href="html/goodlist.html"></p>
+								</li>
+							</ul>
+							<ul class="list">
+
+							</ul>
+							<ul class="list">
+
+							</ul>
+							<a href="html/goodlist.html"><img src="images/ipad.jpg" /></a>
+						</div>
+
+						<div class="menu">
+							<h2>热销榜</h2>
+							<ul class="tabwrap">
+								<li class="tab active">平板电视</li>
+								<li class="tab">剃须刀</li>
+								<li class="tab">电饭煲</li>
+							</ul>
+							<ul class="list activelist">
+								<li class="item">
+									<a class="img" href="html/goodlist.html"><img src="" /></a>
+									<a class="title" href="html/goodlist.html"></a>
+									<p class="price" href="html/goodlist.html"></p>
+								</li>
+							</ul>
+							<ul class="list">
+
+							</ul>
+							<ul class="list">
+
+							</ul>
+							<a href="html/goodlist.html"><img src="images/ipad.jpg" /></a>
+						</div>
+
+						<div class="menu">
+							<h2>热销榜</h2>
+							<ul class="tabwrap">
+								<li class="tab active">平板电视</li>
+								<li class="tab">剃须刀</li>
+								<li class="tab">电饭煲</li>
+							</ul>
+							<ul class="list activelist">
+								<li class="item">
+									<a class="img" href="html/goodlist.html"><img src="" /></a>
+									<a class="title" href="html/goodlist.html"></a>
+									<p class="price" href="html/goodlist.html"></p>
+								</li>
+							</ul>
+							<ul class="list">
+
+							</ul>
+							<ul class="list">
+
+							</ul>
+							<a href="html/goodlist.html"><img src="images/ipad.jpg" /></a>
+						</div>
+
+						<div class="menu">
+							<h2>热销榜</h2>
+							<ul class="tabwrap">
+								<li class="tab active">平板电视</li>
+								<li class="tab">剃须刀</li>
+								<li class="tab">电饭煲</li>
+							</ul>
+							<ul class="list activelist">
+								<li class="item">
+									<a class="img" href="html/goodlist.html"><img src="" /></a>
+									<a class="title" href="html/goodlist.html"></a>
+									<p class="price" href="html/goodlist.html"></p>
+								</li>
+							</ul>
+							<ul class="list">
+
+							</ul>
+							<ul class="list">
+
+							</ul>
+							<a href="html/goodlist.html"><img src="images/ipad.jpg" /></a>
+						</div>
+
+						<script>
+							$(function() {
+								var $menus = $("#content .conright").children(".menu");
+								var $lists = $("#content .conright").find(".list");
+								for(var i = 0, len = $menus.size(); i < len; i++) {
+									var $this = $menus.eq(i);
+									$.tab_change({
+										tab: $this.find(".tab"),
+										tabc: $this.find(".list"),
+										active: "active",
+										activec: "activelist"
+									});
+								}
+								for(var i = 0, len = $lists.size(); i < len; i++) {
+									(function() {
+										var index = i;
+										$.ajax({
+											url: "goods.json",
+											async: true,
+											type: "get",
+											dataType: "json",
+											timeout: 10000,
+											success: function(res) {
+												var htmlstr = "";
+												var data = res.data;
+												for(var j = 0; j < 4; j++) {
+													var thedata = data[j + index];
+													htmlstr += '<li class="item">' +
+														'<a class="img" href="html/goodlist.html"><img src="images/' + thedata.image + '"/></a>' +
+														'<a class="title" href="html/goodlist.html">' + thedata.name + '</a>' +
+														'<a class="price">￥' + thedata.price + '</p>' +
+														'</li>'
+												}
+												$lists.eq(index).html(htmlstr);
+												$lists.eq(index).children(".item").last().addClass("lastitem");
+											}
+										});
+									})();
+								}
+							})
+						</script>
+					</div>
+				</div>
+
+				<!--card-->
+				<div id="cardwrap">
+					<div id="card">
+						<a href="html/goodlist.html"><img src="images/b1.gif" /></a>
+						<a href="html/goodlist.html"><img src="images/b1.gif" /></a>
+						<a href="html/goodlist.html"><img src="images/b1.gif" /></a>
+						<a href="html/goodlist.html"><img src="images/b1.gif" /></a>
+						<a class="last" href="html/goodlist.html"><img src="images/b1.gif" /></a>
+					</div>
+				</div>
+
+				<!--infobook-->
+
+				<div id="infobook">
+					<div class="app item">
+						<span class="img"></span>
+						<div class="con">
+							<h2>掌上新蛋</h2>
+							<p>手机扫描二维码</p>
+							<p>免费下载新蛋商城</p>
+						</div>
+
+					</div>
+					<div class="weixin item">
+						<span class="img"></span>
+						<div class="con">
+							<h2>掌上新蛋</h2>
+							<p>手机扫描二维码</p>
+							<p>免费下载新蛋商城</p>
+						</div>
+					</div>
+					<div class="take">
+						<dl>
+							<dt></dt>
+							<dd>
+								<h2>订阅新蛋优惠信息</h2>
+								<a href="html/goodlist.html">分类订阅</a>
+								>>
+								<a href="html/goodlist.html">咨询导购</a>
+								>>
+							</dd>
+						</dl>
+						<form active="">
+							<input type="text" placeholder="请输入邮箱地址" />
+							<a class="btn">订阅</a>
+						</form>
+					</div>
+					<div class="aboutus">
+						<h2>关注我们:</h2>
+						<div class="link">
+							<span></span>
+							<a>加关注</a>
+						</div>
+						<div class="link link1">
+							<span></span>
+							<a>加关注</a>
+						</div>
+					</div>
+				</div>
+				<!--helpmenu-->
+				<div id="helpmenu">
+					<dl class="new">
+						<dt>新手上路</dt>
+						<dd>
+							<ul>
+								<li>
+									<a href="html/goodlist.html">怎样购物</a>
+								</li>
+								<li>
+									<a href="html/goodlist.html">怎样购物</a>
+								</li>
+								<li>
+									<a href="html/goodlist.html">怎样购物</a>
+								</li>
+								<li>
+									<a href="html/goodlist.html">怎样购物</a>
+								</li>
+								<li>
+									<a href="html/goodlist.html">怎样购物</a>
+								</li>
+							</ul>
+						</dd>
+					</dl>
+					<dl class="shouhou">
+						<dt>售后服务</dt>
+						<dd>
+							<ul>
+								<li>
+									<a href="html/goodlist.html">怎样购物</a>
+								</li>
+								<li>
+									<a href="html/goodlist.html">怎样购物</a>
+								</li>
+								<li>
+									<a href="html/goodlist.html">怎样购物</a>
+								</li>
+								<li>
+									<a href="html/goodlist.html">怎样购物</a>
+								</li>
+								<li>
+									<a href="html/goodlist.html">怎样购物</a>
+								</li>
+							</ul>
+						</dd>
+					</dl>
+					<dl class="service">
+						<dt>服务中心</dt>
+						<dd>
+							<ul>
+								<li>
+									<a href="html/goodlist.html">怎样购物</a>
+								</li>
+								<li>
+									<a href="html/goodlist.html">怎样购物</a>
+								</li>
+								<li>
+									<a href="html/goodlist.html">怎样购物</a>
+								</li>
+								<li>
+									<a href="html/goodlist.html">怎样购物</a>
+								</li>
+								<li>
+									<a href="html/goodlist.html">怎样购物</a>
+								</li>
+							</ul>
+						</dd>
+					</dl>
+					<dl class="join">
+						<dt>加入我们</dt>
+						<dd>
+							<ul>
+								<li>
+									<a href="html/goodlist.html">怎样购物</a>
+								</li>
+								<li>
+									<a href="html/goodlist.html">怎样购物</a>
+								</li>
+								<li>
+									<a href="html/goodlist.html">怎样购物</a>
+								</li>
+								<li>
+									<a href="html/goodlist.html">怎样购物</a>
+								</li>
+								<li>
+									<a href="html/goodlist.html">怎样购物</a>
+								</li>
+							</ul>
+						</dd>
+					</dl>
+					<dl class="about">
+						<dt>关于我们</dt>
+						<dd>
+							<ul>
+								<li>
+									<a href="html/goodlist.html">怎样购物</a>
+								</li>
+								<li>
+									<a href="html/goodlist.html">怎样购物</a>
+								</li>
+								<li>
+									<a href="html/goodlist.html">怎样购物</a>
+								</li>
+								<li>
+									<a href="html/goodlist.html">怎样购物</a>
+								</li>
+								<li>
+									<a href="html/goodlist.html">怎样购物</a>
+								</li>
+							</ul>
+						</dd>
+					</dl>
+				</div>
+
+				<!--footer-->
+				<div id="footer">
+					<a class="item" href="html/goodlist.html"></a>
+					<a class="item" href="html/goodlist.html"></a>
+					<a class="item" href="html/goodlist.html"></a>
+					<a class="item" href="html/goodlist.html"></a>
+					<a class="item" href="html/goodlist.html"></a>
+					<p>新蛋集团网站：
+						<a href="html/goodlist.html">中国新蛋</a>
+						<a href="html/goodlist.html">中国新蛋</a>
+						<a href="html/goodlist.html">中国新蛋</a>
+						<a href="html/goodlist.html">中国新蛋</a>
+					</p>
+					<p>© 2001-2016 新蛋商贸（上海）有限公司 版权所有
+						<a href="html/goodlist.html">沪ICP备:16033615</a>
+					</p>
+				</div>
+	</body>
+
+</html>

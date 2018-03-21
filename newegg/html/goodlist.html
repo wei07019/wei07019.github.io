@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/same.css" />
+		<link rel="stylesheet" type="text/css" href="../css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="../css/goodlist.css" />
+		<script src="../js/jquery-1.12.4.min.js"></script>
+		<script src="../js/plug_tab.js"></script>
+		<script src="../js/handlebars.min.js"></script>
+		<script src="../js/CookieUtil.js"></script>
+	</head>
+	<body>
+		<div id="loadtop">
+			
+		</div>
+		<div id="loadheader">
+			
+		</div>
+		
+		<div id="loadnav">
+			
+		</div>
+		<script>
+			$(function() {
+				$("#loadheader").load("../file/header.html");
+				$("#loadnav").load("../file/nav.html");
+				$("#loadtop").load("../file/top.html");
+			})
+		</script>
+		<div id="pwdwrap">
+			<div id="pwd">
+				<a href="#">首页</a>
+				<span> > </span>
+				<a href="#">电脑</a>
+				<span> > </span>
+				<b>笔记本</b>
+			</div>
+		</div>
+		<div id="body">
+			<div class="bodyleft">
+				<div class="menuwrap">
+					<ul class="menu">
+						<li class="list"><a href="#">电脑整机</a>
+							<ul class="menu2">
+								<li class="item"><a href="#">笔记本</a></li>
+								<li class="item"><a href="#">笔记本</a></li>
+								<li class="item"><a href="#">笔记本</a></li>
+								<li class="item"><a href="#">笔记本</a></li>
+							</ul>
+						</li>
+						<li class="list"><a href="#">电脑配件</a>
+							<ul class="menu2">
+								<li class="item"><a href="#">内存</a></li>
+								<li class="item"><a href="#">内存</a></li>
+								<li class="item"><a href="#">内存</a></li>
+								
+							</ul>
+						</li>
+					</ul>
+				</div>
+				<script>
+					$(function() {
+						$(".bodyleft .menu .list").click(function() {
+							if($(this).children(".menu2").is(":hidden")) {
+								$(this).children(".menu2").stop(true).slideDown();
+								$(this).children("a").css("backgroundPosition","9px -69px");
+								$(this).siblings(".list").children(".menu2").stop(true).slideUp();
+								$(this).siblings(".list").children("a").css("bockground","9px -35px")
+							} else{
+								$(this).children(".menu2").stop(true).slideUp();
+								$(this).children("a").css("backgroundPosition","9px -35px");
+							}
+						})
+					})
+				</script>
+				<div class="bangdan">
+					<div class="tab">
+						<p class="active">热销榜</p>
+						<p>降价榜</p>
+					</div>
+					<div class="hot">
+						<ul class="list hotlist activec">
+							
+						</ul>
+					</div>
+					<div class="lower">
+						<ul class="list lowerlist">
+							
+						</ul>
+					</div>
+					<script>
+						$(function() {
+							$.ajax({
+								url: "../goods.json",
+								async: true,
+								type: "get",
+								dataType: "json",
+								timeout:10000,
+								success: function(res) {
+									if(res.code == 200) {
+										var data = res.data;
+										var htmlstr = "";
+										var htmlstr2 = "";
+										for(var i = 0;i < 5; i++) {
+											var str = data[i];
+											
+											if(i > 0) {
+												htmlstr += '<li class="item">' +
+															'<p class="img">' +
+																'<a href="#"><img src="../images/' + str.image +  '"/></a>' +
+															'</p>' +
+															'<p class="title"><a href="#">' + str.name + '</a></p>' +
+															'<p class="price">￥' + str.price + '</p>' +
+														'</li>';
+											}
+											htmlstr2 += '<li class="item">' +
+															'<p class="img">' +
+																'<a href="#"><img src="../images/' + str.image +  '"/></a>' +
+															'</p>' +
+															'<p class="title"><a href="#">' + str.name + '</a></p>' +
+															'<p class="price">￥' + str.price + '</p>' +
+														'</li>';
+										}
+										$(".bodyleft .bangdan .hotlist").eq(0).html(htmlstr).children(".item").last().addClass("listitem");
+										$(".bodyleft .bangdan .lowerlist").eq(0).html(htmlstr2).children(".item").last().addClass("listitem");
+										
+									} else{
+										alert("获取失败");
+									}
+								},
+								error: function() {
+									alert("网络连接错误");
+								}
+							})
+						})
+						$.tab_change({
+							tab: $(".bodyleft .bangdan .tab p"),
+							tabc: $(".bodyleft .bangdan .list"),
+							active: "active",
+							activec: "activec"
+						})
+					</script>
+				</div>
+				
+			</div>
+			<div class="bodyright">
+				<div class="zixun">
+					<div class="zxtitle">
+						<h2>咨询导购</h2>
+						<a href>更多>></a>
+					</div>
+					<div class="zxcon">
+						<ul class="zxlist">
+							<li><a href="#">【第六代处理器】ThinkPad x260全新上市</a></li>
+							<li><a href="#">【第六代处理器】ThinkPad x260全新上市</a></li>
+							<li><a href="#">【第六代处理器】ThinkPad x260全新上市</a></li>
+						</ul>
+					</div>					
+				</div>
+				<div class="filterwrap">
+					<div class="goodcount">
+						共
+						<span>144</span>
+						件商品
+					</div>
+					<div class="filtercon">
+						<div class="filteritem">
+							<label>品牌:</label>
+							<div class="select">
+								<a href="#">DELL 戴尔</a>
+								<a href="#">DELL 戴尔</a>
+								<a href="#">DELL 戴尔</a>
+								<a href="#">DELL 戴尔</a>
+								<a href="#">DELL 戴尔</a>
+								<a href="#">DELL 戴尔</a>
+								<a href="#">DELL 戴尔</a>
+								<a href="#">DELL 戴尔</a>
+								<a href="#">DELL 戴尔</a>
+							</div>
+						</div>
+						<div class="filteritem">
+							<label>品牌:</label>
+							<div class="select">
+								<a href="#">DELL 戴尔</a>
+								<a href="#">DELL 戴尔</a>
+								<a href="#">DELL 戴尔</a>
+								<a href="#">DELL 戴尔</a>
+								<a href="#">DELL 戴尔</a>
+							</div>
+						</div>
+						<div class="filteritem">
+							<label>品牌:</label>
+							<div class="select">
+								<a href="#">DELL 戴尔</a>
+								<a href="#">DELL 戴尔</a>
+								<a href="#">DELL 戴尔</a>
+								<a href="#">DELL 戴尔</a>
+							</div>
+						</div>
+					</div>
+					<div class="morefil">
+						<div class="select">
+							<label>更多选项:</label>
+							<ul>
+								<li class="item">平台
+									<i></i>
+								</li>
+								<li class="item">尺寸
+									<i></i>
+								</li>
+								<li class="item">显卡
+									<i></i>
+								</li>
+								<li class="item">内存容量
+									<i></i>
+								</li>
+								<li class="item">平台
+									<i></i>
+								</li>
+							</ul>
+						</div>
+						<div class="con">
+							<a href="#">DELL 戴尔</a>
+							<a href="#">DELL 戴尔</a>
+							<a href="#">DELL 戴尔</a>
+							<a href="#">DELL 戴尔</a>
+						</div>
+						<div class="con">
+							<a href="#">DELL 戴尔1</a>
+							<a href="#">DELL 戴尔</a>
+							<a href="#">DELL 戴尔</a>
+							<a href="#">DELL 戴尔</a>
+						</div>
+						<div class="con">
+							<a href="#">DELL 戴尔2</a>
+							<a href="#">DELL 戴尔</a>
+							<a href="#">DELL 戴尔</a>
+							<a href="#">DELL 戴尔</a>
+						</div>
+						<div class="con">
+							<a href="#">DELL 戴尔3</a>
+							<a href="#">DELL 戴尔</a>
+							<a href="#">DELL 戴尔</a>
+							<a href="#">DELL 戴尔</a>
+						</div>
+						<div class="con">
+							<a href="#">DELL 戴尔4</a>
+							<a href="#">DELL 戴尔</a>
+							<a href="#">DELL 戴尔</a>
+							<a href="#">DELL 戴尔</a>
+						</div>						
+					</div>
+				</div>
+				<script>
+				var $tab = $(".bodyright .morefil .item");
+				var $tabc = $(".bodyright .morefil .con")
+					$(function() {						
+						$.tab_change({
+							tab:$tab,
+							tabc:$tabc,
+							active: "itemactive",
+							activec: "conactive"
+						});
+						$(".bodyright .morefil").mouseleave(function() {
+							$tab.removeClass("itemactive");
+							$tabc.removeClass("conactive");
+						})
+					})
+				</script>
+				<!--goodslist-->
+				<div class="goodswrap">
+					<ul class="goodslist">
+						<li class="goodsitem">
+							<div class="img">
+								<a class="goproduct" href="#"><img src="" /></a>
+								<i></i>
+								<a class="dayoff" href=""></a>
+								<a class="ershou" href=""></a>
+							</div>
+							<p class="title"><a class="goproduct" href=""></a></p>
+							<p class="prom"></p>
+							<p class="cmt">
+								<a  href="#">[1]&nbsp;</a>
+							</p>
+							<p class="action">
+								<a class="add" href="#">购买</a>
+								<a class="collect" href="#">收藏</a>
+								<a class="comp" href="#">比较</a>
+							</p>
+						</li>
+					</ul>
+				</div>
+				<!--模板-->
+				<script id="temp" type="text/x-handlebars-template">
+					{{#each data}}
+					<li class="goodsitem">
+						<div class="img">
+							<a class="goproduct" href="#" target="_blank"><img src="../images/{{this.image}}" /></a>
+							<i></i>
+							<a class="dayoff" href=""></a>
+							<a class="ershou" href=""></a>
+						</div>
+						<p class="title"><a class="goproduct" href="#"  target="_blank">{{this.name}}</a></p>
+						<p class="prom">{{this.price}}</p>
+						<p class="cmt">
+							<a href="#">[1]&nbsp;</a>
+						</p>
+						<p class="action">
+							<a class="add" href="../html/shopcart.html?id={{this.id}}&title={{this.name}}&price={{this.price}}&image={{this.image}}" onclick="return add({id:'{{this.id}}',title:'{{this.name}}',price:'{{this.price}}',image:'{{this.image}}'})">购买</a>
+							<a class="collect" href="#">收藏</a>
+							<a class="comp" href="#">比较</a>
+						</p>
+					</li>
+					{{/each}}
+				</script>
+				<script>
+					//获取商品列表
+					$(function() {
+						var temp = $(".bodyright #temp").html();
+						var tempFn = Handlebars.compile(temp);
+						$.ajax({
+							url: "../goods.json",
+							async: true,
+							type: "get",
+							dataType: "json",
+							timeout:10000,
+							success: function(res) {
+								if(res.code == 200) {
+									var htmlstr = tempFn(res);
+									$(".bodyright .goodslist").eq(0).html(htmlstr);
+									var $goodsitems = $(".goodswrap .goodslist .goodsitem");
+									for(var i = 0,len = $goodsitems.size();i < len;i++) {
+										var href = "product.html?goodsinfo=" + encodeURIComponent(JSON.stringify(res.data[i]));
+										$goodsitems.eq(i).find(".goproduct").attr("href",href);
+										console.dir($goodsitems.eq(i).find(".goproduct"));
+									}
+								} else {
+									alert("获取数据失败");
+								}
+							},
+							error: function() {
+								alert("网络错误")
+							}
+						});						
+					});	
+				</script>
+				<script>
+					//添加购物车
+					function add(obj){
+						var str = CookieUtil.getCookie("goods");
+						var cookiearr = [];
+						if(str == null) {
+							obj.count = 1;
+							cookiearr.push(obj);
+							
+						} else {
+							cookiearr = JSON.parse(str);
+							var ifExist = false;
+							for(var i = 0,len = cookiearr.length;i < len; i++) {
+								if(obj.id == cookiearr[i].id) {
+									cookiearr[i].count++;
+									ifExist = true;
+									break;
+								}
+							}
+							if(!ifExist) {
+								obj.count = 1;
+								cookiearr.push(obj);
+							}
+						}
+						CookieUtil.saveCookie("goods",JSON.stringify(cookiearr));
+					}
+				</script>
+			</div>
+		</div>
+		<div id="loadhelp">
+			
+		</div>
+		<div id="loadfooter">
+			
+		</div>
+		
+		<script>
+			$(function() {
+				$("#loadfooter").load("../file/footer.html");
+				$("#loadhelp").load("../file/help.html");
+			})
+		</script>
+	</body>
+</html>

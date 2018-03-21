@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>注册新蛋</title>
+		<link rel="stylesheet" type="text/css" href="../css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/same.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/register.css"/>
+		<script src="../js/jquery-1.12.4.min.js"></script>
+	</head>
+	<body>
+		<!--register-->
+		<div id="registerwrap">
+			<div id="register">
+				<a class="left" href="#"><img src="../images/478x362.jpg"/></a>
+				<div class="right">
+					<form class="registerform">
+						<div class="registertitle">
+							<h2>注册新蛋</h2>
+							<div class="zc" ><a href="#">旧用户登录>></a></div>
+						</div>
+						<div class="user username">
+							<i class="unicon"></i>
+							<input type="text" name="username" />
+							<span class="register_error">输入的登录名或密码错误</span>
+						</div>
+						<div class="user psd">
+							<i class="psdicon"></i>
+							<input type="password" name="password"  />
+							<span class="register_error">输入的登录名或密码错误</span>
+						</div>
+						<div class="user ispsd">
+							<i class="psdicon"></i>
+							<input type="password"/>
+							<span class="register_error">输入的登录名或密码错误</span>
+						</div>
+						<div class="registerbtn">
+							<a href="javascript:void(0)">登录</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div id="otherfooter">
+			
+		</div>
+		<script>
+			$(function() {
+				$("#otherfooter").load("../file/footer.html")
+				$("#register .username input").blur(function() {
+					check_username();
+				}).focus(function() {
+					$(this).siblings(".register_error").css("display","none");
+				});
+				$("#register .psd input").blur(function() {
+					check_psd();
+				}).focus(function() {
+					$(this).siblings(".register_error").css("display","none");
+				});;
+				$("#register .ispsd input").blur(function() {
+					check_ispsd();
+				}).focus(function() {
+					$(this).siblings(".register_error").css("display","none");
+				});;
+				$("#register .registerbtn a").click(function() {
+					if(check_username() && check_psd() && check_ispsd()) {
+						var dataobj = {
+							"username" : $("#register .username input ").eq(0).val(),
+							"password" : $("#register .psd input").eq(0).val()
+						}
+						$.ajax({
+							url: "http://10000phone.applinzi.com/HQNews/user/userregister.php",
+							async: true,
+							type: "post",
+							data: dataobj,
+							dataType: "json",
+							success: function(res) {
+								if(res.code == 200) {
+									alert("注册成功");
+								} else {
+									alert("注册失败");
+								}
+							},
+							error: function() {
+								alert("请求失败")
+							}
+						})
+					}
+				})
+				function check_username() {
+					var $obj = $("#register .username input").eq(0);
+					if($obj.val().length >= 6 && $obj.val().length <= 12) {
+						var isable = false;
+						$obj.siblings(".register_error").html("正在检测账号...").css({
+							display: "block",
+							color : "#000",
+							backgroundPositionY: "999px"
+						});
+						$.ajax({
+							url: "http://10000phone.applinzi.com/HQNews/user/checkRegister.php",
+							type: "post",
+							async: false,
+							data: {"username":$obj.val()},
+							dataType: "json",
+							timeout:10000,
+							success: function(res) {
+								if(res.code == 200) {
+									re_right($obj);
+									isable = true;
+								} else {
+									$obj.siblings(".register_error").html("用户名已被使用").css({
+										display: "block",
+										color : "red",
+										backgroundPositionY: "-39px"
+									});
+								}
+							},
+							error: function(res) {
+								$obj.siblings(".register_error").html("网络错误").css({
+									display: "block",
+									color : "#000",
+									backgroundPositionY: "5px"
+								});
+							}
+							
+						})
+						return isable;						
+					} else {
+						re_error($obj);
+						return false;
+					}
+				}
+				function check_psd() {
+					var reg = /^\S{8,12}$/;
+					var $obj = $("#register .psd input").eq(0);
+					if(reg.test($obj.val())) {
+						re_right($obj);
+						return true;
+					} else {
+						re_error($obj);
+						return false;
+					}
+				}
+				function check_ispsd() {
+					var $obj = $("#register .ispsd input").eq(0);
+					var psd1 = $obj.val();
+					var psd2 = $("#register .psd input").eq(0).val();
+					if(psd1 == psd2) {
+						re_right($obj);
+						return true;
+					} else {
+						re_error($obj);
+						return false;
+					}
+				}
+				function re_right($obj) {
+					$obj.siblings(".register_error").css({
+						display: "block",
+						color : "blue",
+						backgroundPositionY: "-19px"
+					}).html("输入正确");
+				}
+				function re_error($obj) {
+					$obj.siblings(".register_error").css({
+						display: "block",
+						color : "red",
+						backgroundPositionY: "-39px"
+					}).html("输入格式有误");
+				}
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,23 @@
+@charset "utf-8";
+/******registerwrap******/
+#registerwrap{height:397px;padding:44px 0;background:#E3E3E3;}
+#register{width:980px;height:397px;margin:0 auto;}
+#register .left{display:block;width:547px;float:left;}
+#register .right{width:360px;height:355px;padding:20px 0;border:1px solid #CCC;float:right;background:#fff;}
+#register .right .registerform{padding:0 25px 15px 30px;}
+#register .right .registertitle{height:21px;margin-bottom:23px;}
+#register .right .registertitle h2{color: #333;float: left;font: 18px microsoft yahei;}
+#register .right .registertitle .zc{float:right;}
+#register .user{height:57px;position:relative;text-align:center;}
+#register .user i{width: 30px;height: 33px;display: inline-block;background-position: 0 0;vertical-align: middle;background: url(../images/login_icon.png) no-repeat center top;}
+#register .user input{width:250px;height:31px;vertical-align: middle;margin-left:-4px;outline:none;border:1px solid #CFCFCF;text-indent:5px;line-height:31px;}
+#register .right .username{position:relative;}
+#register .right .psd{position:relative;}
+#register .right .ispsd{position:relative;}
+#register .username .unicon{background-position:center top;}
+#register .psd .psdicon{background-position:center -59px;}
+#register .ispsd .psdicon{background-position:center -59px;}
+#register .right .register_error{width:275px;display:inline-block;padding-left:17px;vertical-align: middle;position:absolute;left:10px;top:35px;text-align:left;color:red;background:url(../images/icon_logoin_s.png) no-repeat 0 -39px;display:none;}
+#register .right .registerbtn{text-align:center;}
+#register .right .registerbtn a{display:inline-block;width:240px;height:30px;line-height:30px;text-align:center;padding:0 19px;margin-top:10px;font-size:14px;font-weight:border;color:#fff;background:#f7661f;border:1px solid #f7661f;}
+#register .right .registerbtn a:hover{background:#ff971c;border-color:#ff971c;}

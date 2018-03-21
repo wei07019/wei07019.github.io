@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/same.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/login.css"/>
+		<script src="../js/jquery-1.12.4.min.js"></script>
+	</head>
+	<body>	
+		<div id="loginwrap">
+			<div id="login">
+				<a class="left" href="#"><img src="../images/478x362.jpg"/></a>
+				<div class="right">
+					<form class="loginform">
+						<div class="logintitle">
+							<h2>登录新蛋</h2>
+							<div class="zc" ><a href="#">注册新用户>></a></div>
+						</div>
+						<div class="user username">
+							<i class="unicon"></i>
+							<input type="text" name="username" placeholder="用户名/已验证手机或邮箱" />
+						</div>
+						<div class="user psd">
+							<i class="psdicon"></i>
+							<input type="password" name="password"  />
+							<span class="login_error">输入的登录名或密码错误</span>
+						</div>
+						<div class="loginsafe">
+							<a class="safe" href="#">账户安全</a>
+							<a class="forget" href="#">忘记密码?</a>
+						</div>
+						<div class="loginbtn">
+							<a href="javascript:void(0)">登录</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div id="otherfooter">
+			
+		</div>r
+		<script>
+			$(function() {
+				$("#otherfooter").load("../file/footer.html");
+				$("#login .loginbtn a").click(function() {
+					var obj = {
+						"username" : $("#login .username input").eq(0).val(),
+						"password" : $("#login .psd input").eq(0).val()
+					}
+					$.ajax({
+						url: "http://10000phone.applinzi.com/HQNews/user/userlogin.php",
+						async: true,
+						type:"get",
+						data: obj,
+						dataType: "json",
+						success: function(res) {
+							if(res.code == 200) {
+								console.dir(res);
+								window.location.href = "../index.html?userid=" + res.data[0].userid;
+							} else {
+								$("#login .psd .login_error").eq(0).css("display","block");
+							}
+						}
+					})
+				})
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,17 @@
+#shopwrap{width:980px;margin:65px auto 0;}
+#shopcard{width:958px;margin:0 auto;border:1px solid #bfbfbf;}
+table{table-layout: fixed;}
+#shopcard .mycardth{border-bottom:1px solid #d9d9d9;}
+#shopcard .mycardth .mycardtxt{margin-left:10px;}
+#shopcard .payth{border-bottom:1px solid #bbb;border-left:1px solid #bbb;}
+#shopcard .payth .paytxt{margin-left:10px;}
+#shopcard .paycon{border-left:1px solid #bbb;}
+#shopcard #goodslist tr td{padding-top:20px;}
+#shopcard #goodslist .goodsname dl{height:60px;padding-bottom:20px;}
+#shopcard #goodslist .goodsname dt{width:80px;height:60px;padding-bottom:20px;float:left;}
+#shopcard #goodslist .goodsname dt img{width:80px;height:60px;}
+#shopcard #goodslist .goodsname dd{width:285px;height:60px;padding:0 0 20px 10px;overflow:hidden;float:left;}
+#shopcard #goodslist input[type=text]{width:40px;height:20px;margin:0 auto 10px;text-align:center;}
+#shopcard #goodslist input[type=button]{width:20px;heiht:20px;}
+#shopcard #goodslist .xiaoji{color:#fe7b23;font-size:14px;}
+

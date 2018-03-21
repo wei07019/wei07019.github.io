@@ -1,0 +1,61 @@
+@charset "utf-8";
+
+/****************pwd*******************/
+#pwdwrap{background:#f0f0f0;clear:both;overflow:hidden;}
+#pwd{width:1200px;height:29px;margin:0 auto;line-height:29px;}
+#pwd a{color:#777;}
+#pwd span{padding:0 5px;}
+#pwd b{font-weight:normal;color:#333;}
+
+#body{width:1200px;margin:5px auto 0;overflow:hidden;}
+#body .bodyleft{width:179px;float:left;overflow:hidden;}
+#body .bodyright{width:1010px;float:right;}
+
+/****************bodyleft******************/
+.bodyleft .menuwrap{overflow:hidden;}
+.bodyleft .menu{border:1px solid #f3ce76;border-top:0;}
+.bodyleft .list{font-size:14px;}
+.bodyleft .list>a{display: block; padding: 4px 8px 4px 23px;background:#ffdc93 url(../images/cate_menu.png) 9px -35px no-repeat;color: #845400;text-decoration: none;border-bottom:1px solid #f3ce76;}
+.bodyleft .list .menu2{overflow:hidden;padding-top:5px;display:none;}
+.bodyleft .menu2 .item{height:24px;padding-left:34px;line-height:24px;background:url(../images/search_menu.png) 24px -46px no-repeat}
+
+/********************bangdan*********************/
+.bodyleft .bangdan{border:1px solid #e6e6e6;margin-top:10px;overflow:hidden;}
+.bodyleft .bangdan .tab p{width:50%;height:29px;text-align:center;line-height:29px;background:#e6e6e6;float:left;clear:right;}
+.bodyleft .bangdan .tab .active{background:#fff;color:#333;}
+.bodyleft .bangdan .list{display:none;}
+.bodyleft .bangdan .activec{display:block;}
+
+/************************bodyright*****************/
+/***********************zixun**********************/
+.bodyright .zixun{border:1px solid #ccc;margin-bottom:10px;overflow:hidden;}
+.bodyright .zxtitle{padding:5px 10px;color:#039;overflow:hidden;}
+.bodyright .zxtitle a{color:#039;}
+.bodyright .zxtitle h2{font-size:14px;float:left;}
+.bodyright .zxtitle a{float:right;}
+.bodyright .zxcon{padding:5px 0 10px;}
+.bodyright .zxcon .zxlist{overflow:hidden;}
+.bodyright .zxcon .zxlist li{float:left;width:306px;height:22px;line-height:22px;padding-left:20px;overflow:hidden;white-space: nowrap;text-overflow: ellipsis;background:url(../images/dot.gif) 10px center no-repeat;}
+.bodyright .zxcon .zxlist a{color:#ff6600;}
+.bodyright .filterwrap{margin-top:10px;}
+.bodyright .filterwrap .goodcount{height:18px;padding:6px 22px;line-height:18px;background:#edf3fa;border:1px solid #ccc;font-size:14px;}
+.bodyright .filterwrap .goodcount span{font-weight:bold;}
+.bodyright .filtercon{border:1px solid #ccc;}
+.bodyright .filtercon .filteritem{margin-top:-1px;padding:9px 0 6px 90px;line-height:18px;border-top:1px solid #e6e6e6;overflow:hidden;}
+.bodyright .filtercon label{    float: left;width: 85px;padding: 0 0 0 5px;margin-left: -90px;text-align: right;font-weight: bold;color: #333;}
+.bodyright .filteritem .select{width:780px;float:left;}
+.bodyright .filteritem .select a{display:inline-block;padding:0 15px;}
+.bodyright .morefil{position:relative;}
+.bodyright .morefil .select{border:1px solid #CCC;height:34px;padding:0;line-height:24px;border-top:0;background:#edf3fa;overflow:hidden;}
+.bodyright .morefil .select label{float: left;width: 85px;padding: 0 0 0 5px;text-align: right;font-weight: bold;color: #333;margin: 4px 14px 0 0;}
+.bodyright .morefil .select ul{float;left;margin-top:4px;}
+.bodyright .morefil .select .item{float: left;padding: 0 15px 0 7px;border: 1px solid #DFDFDF;background: #FFF;margin-right: 10px;line-height: 23px;position: relative;height: 23px;}
+.bodyright .morefil .select a{color:#666;}
+.bodyright .morefil .select i{position: absolute;display: inline-block;width: 7px;height: 4px;top: 10px;right: 5px;overflow: hidden;background: url(../images/sprite_v140304.png) 0 -1389px no-repeat;}
+.bodyright .morefil .con{display:none;position:absolute;z-index:3;width:1008px;top:28px;overflow:hidden;clear:both;background :#fff;border:1px solid #dbdbdb;}
+.bodyright .morefil .con a{float: left;margin: 0 0 0 25px;color: #666;height: 42px;line-height: 42px;text-decoration: none;}
+.bodyright .morefil .conactive{display:block;}
+.bodyright .morefil .select .itemactive{border-bottom:0;height:24px;z-index:10;}
+.bodyright .goodslist .goodsitem{width:221px;padding:0 15px 20px 15px;overflow:hidden;float:left;}
+.bodyright .goodslist .goodsitem .img{height:168px;margin:20px 0 5px 0;text-align:center;position:relative;}
+.bodyright .goodslist .goodsitem .title{height:35px;margin:4px 0;overflow:hidden;}

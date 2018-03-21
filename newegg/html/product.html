@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/same.css" />
+		<link rel="stylesheet" type="text/css" href="../css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="../css/product.css" />
+		<script src="../js/jquery-1.12.4.min.js"></script>
+		<script src="../js/handlebars.min.js"></script>
+		<script src="../js/CookieUtil.js"></script>
+	</head>
+	<body>
+		<div id="loadtop">
+			
+		</div>
+		<div id="loadheader">
+			
+		</div>
+		
+		<div id="loadnav">
+			
+		</div>
+		<script>
+			$(function() {
+				$("#loadheader").load("../file/header.html");
+				$("#loadnav").load("../file/nav.html");
+				$("#loadtop").load("../file/top.html");
+			})
+		</script>
+		<!--pwdwrap-->
+		<div id="pwdwrap">
+			<div id="pwd">
+				<a href="#">首页</a>
+				<span> > </span>
+				<a href="#">电脑</a>
+				<span> > </span>
+				<b>笔记本</b>
+			</div>
+		</div>
+		<!--tab-->
+		<div id="tabbox">
+			<div id="tabwrap1" class="tabwrap">
+				<div id="tab">
+					<ul>
+						<li class="firstli active">商品详情</li>
+						<li>用户评论</li>
+						<li>具体参数</li>
+						<li>售后服务</li>
+						<li>商品咨询</li>
+					</ul>
+				</div>
+			</div>
+			<div class="tabwrap" id="tabwrap2">
+				<div id="tab">
+					<ul>
+						<li class="firstli active">商品详情</li>
+						<li>用户评论</li>
+						<li>具体参数</li>
+						<li>售后服务</li>
+						<li>商品咨询</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<!--tabcon-->
+		<div id="tabcon">
+			<div class="tabc" style="display:block;">
+				<div class="goodsinfo">
+					<div class="left">
+						<div class="imgwrap">
+							<img style="display:block;"src="../images/p1.jpg" />
+							<img src="../images/p2.jpg" />
+							<img src="../images/p3.jpg" />
+							<img src="../images/p4.jpg" />
+							<div class="watchbox">
+								
+							</div>
+						</div>
+						<div class="bigimgwrap">
+							<img style="display:block;" src="../images/p1.jpg" />
+							<img src="../images/p2.jpg" />
+							<img src="../images/p3.jpg" />
+							<img src="../images/p4.jpg" />
+						</div>
+						<div class="indexwrap">
+							<ul>
+								<li><img src="../images/p1.jpg"/></li>
+								<li><img src="../images/p2.jpg"/></li>
+								<li><img src="../images/p3.jpg"/></li>
+								<li><img src="../images/p4.jpg"/></li>
+							</ul>
+						</div>
+					</div>
+					<div class="right">
+						<div class="title">
+							<h1>breo 倍轻松 智能手表 ume UME WATCH 智能穿戴心表</h1>
+							<p>【新蛋自营 正品保证】 心脏管家 睡眠助手 远程关爱 运动跟踪</p>
+						</div>
+						<div class="intro">
+							<ul>
+								<li class="brank">
+									<div class="infoname">
+										品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;牌：
+									</div>
+									<div class="infodata">
+										 <a href="#">breo 倍轻松</a>
+									</div>
+								</li>
+								<li class="version">
+									<div class="infoname">
+										产品型号：
+									</div>
+									<div class="infodata">
+										unam：
+									</div>
+								</li>
+								<li class="price">
+									<div class="infoname">
+										新&nbsp;&nbsp;蛋&nbsp;&nbsp;价:
+									</div>
+									<div class="infodata">
+										<span>￥</span>
+										<b>8888.00</b>
+									</div>
+								</li>
+								<li class="support">
+									<div class="infoname">
+										商品支持：
+									</div>
+									<div class="infodata">
+										<a href="#">礼品包装</a>
+									</div>
+								</li>								
+								<li class="counts">
+									<div class="infoname">
+										数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量：
+									</div>
+									<div class="infodata">
+										<input class="btn btn1" style="background:#ddd;" type="button" value="-" disabled/>
+										<input class="num" type="text" value="1" />
+										<input class="btn btn2" type="button" value="+"  />
+									</div>
+								</li>
+							</ul>
+						</div>
+						<div class="buybtn">
+							<a class="addcart" href="shopcart.html">加入购物车</a>
+							<a class="golist" href="goodlist.html">继续购物</a>
+							<div class="otherlink">
+								<a class="favor">加入收藏夹</a>
+								<div class="likepoint">
+									12
+								</div>
+								<div class="shareicon">
+									<a class="share"></a>
+									<a class="share"></a>
+									<a class="share"></a>
+									<a class="share"></a>
+									<a class="moreshare"></a>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			<div class="tabc">
+				2
+			</div>
+			<div class="tabc">
+				3
+			</div>
+			<div class="tabc">
+				4
+			</div>
+			<div class="tabc">
+				5
+			</div>			
+		</div>
+		<div id="loadhelp">
+			
+		</div>
+		<div id="loadfooter">
+			
+		</div>
+		<script>
+			$(function() {
+				$("#loadfooter").load("../file/footer.html");
+				$("#loadhelp").load("../file/help.html");
+			})
+		</script>
+		<script>
+			$(function() {
+				//导航条效果
+				$(".tabwrap").on("click","li",function(evt) {
+					var tabtop = $("#tabbox").offset().top + $("#tabwrap1").innerHeight() - $("#tabwrap2").innerHeight();
+					var index = $(evt.target).index();
+					$("#tabwrap1").find("li").removeClass("active").eq(index).addClass("active");
+					$("#tabwrap2").find("li").removeClass("active").eq(index).addClass("active");
+					$("#tabcon .tabc").css("display","none").eq(index).css("display","block");
+					if(index == 0) {
+						$("html,body").scrollTop(tabtop);
+					} else {
+						$("html,body").scrollTop($("#tabcon .tabc").eq(index).offset().top - $("#tabwrap1").height());
+					}
+					
+				});
+				//页面滚动时导航条效果
+				$(window).scroll(function() {
+					var tabtop = $("#tabbox").offset().top + $("#tabwrap1").innerHeight() - $("#tabwrap2").innerHeight();
+					if($("body").scrollTop() >= tabtop || $("html").scrollTop() > tabtop) {
+						$("#tabbox #tabwrap2").css("display","block");
+					} else {
+						$("#tabbox #tabwrap2").css("display","none");
+					}
+				});
+				
+				//获取物品信息
+				var str = decodeURIComponent(window.location.href.split("=")[1]);
+				console.log(str)
+				if(str != "undefined") {
+					var goodsobj = JSON.parse(str);
+					var obj = {};
+					obj.image = goodsobj.image;
+					obj.id = goodsobj.id;
+					obj.title = goodsobj.name;
+					obj.price = goodsobj.price;
+					//显示物品信息
+					$("#tabcon .right .title h1").html(goodsobj.name);
+					$("#tabcon .right .brank .infodata a").html(goodsobj.brank);
+					$("#tabcon .right .version .infodata").html(goodsobj.version);
+					$("#tabcon .right .price .infodata b").html(goodsobj.price);
+				}
+				
+				//物品图片
+				var $imgs = $("#tabcon .left .imgwrap img");
+				var $bigs = $("#tabcon .left .bigimgwrap img");
+				var $indexs = $("#tabcon .left .indexwrap li");
+				$indexs.mouseenter(function() {
+					var index = $indexs.index(this);
+					$imgs.css("display","none").eq(index).css("display","block");
+					$bigs.css("display","none").eq(index).css("display","block")
+					$indexs.css("borderColor","#fff").eq(index).css("borderColor","#f60");
+				});
+				//图片放大镜
+				var $imgbox = $("#tabcon .left .imgwrap").eq(0);
+				var $bigbox = $("#tabcon .left .bigimgwrap").eq(0);
+				var $bigimg = $("#tabcon .left .bigimgwrap img");
+				var $wb = $("#tabcon .left .imgwrap .watchbox").eq(0);
+				var imgW = $imgbox.width();
+				var imgH = $imgbox.outerHeight();
+				var left_offset = $("#tabcon .left").offset().top;
+				var imgboxT = $imgbox.offset().top + left_offset + $("#tabcon").offset().top;
+				var imgboxL = $imgbox.offset().left;
+				var wbW = $wb.width();
+				var wbH = $wb.height();
+				$imgbox.mouseenter(function() {
+					$wb.css("display","block");
+					$bigbox.css("display","block");
+				}).mouseleave(function() {
+					$wb.css("display","none");
+					$bigbox.css("display","none");
+				})
+				$imgbox.mousemove(function(evt) {
+					var px = evt.clientX - wbW / 2 - imgboxL;
+					var py = evt.clientY - wbH / 2 -imgboxT + $(window).scrollTop();
+					var maxx = imgW - wbW;
+					var maxy = imgH - wbH;
+					if(px > maxx) {
+						px = maxx;
+					}
+					if(px < 0) {
+						px = 0;
+					}
+					if(py > maxy) {
+						py = maxy;
+					}
+					if(py < 0) {
+						py = 0;
+					}
+					
+					$wb.css({"top":py,"left":px});
+					$bigimg.css({"marginTop":-2 * py,"marginLeft": -2 * px});
+				})
+				//减号
+				$("#tabcon .btn1").click(function() {
+					var count = $("#tabcon .counts .num").eq(0).val();
+					count--;
+					$(this).next().val(count);
+					if(count == 1) {
+						$(this).attr("disabled",true).css("background","#ddd");
+					}
+				});
+				//加号
+				$("#tabcon .btn2").click(function() {
+					$("#tabcon .btn1").attr("disabled",false).css("background","#fff");
+					$(this).prev().val(Number($(this).prev().val()) + 1);
+				});
+				//输入数量
+				$("#tabcon .counts .num").eq(0).keyup(function() {
+					var count = $(this).val()
+					if(isNaN(count)) {
+						count = count.substring(0,count.length - 1);
+						$(this).val(count);
+					}
+				});
+				$("#tabcon .counts .num").eq(0).blur(function() {
+					if($(this).val().length == 0) {
+						$(this).val(1);
+					}
+				});
+				//加入购物车
+				$("#tabcon .buybtn .addcart").click(function() {
+					var count = Number($("#tabcon .counts .num").val());
+					var cookiestr = CookieUtil.getCookie("goods");
+					var cookiearr = [];
+					var isExtend = false;
+					obj.count = count;
+					if(cookiestr == null) {						
+						cookiearr.push(obj);
+					} else {
+						cookiearr = JSON.parse(cookiestr);
+						for(var i = 0,len = cookiearr.length;i < len;i ++) {
+							if(obj.id == cookiearr[i].id) {
+								isExtend = true;
+								cookiearr[i].count = Number(cookiearr[i].count) + count;
+								break;
+							}
+						}
+					}
+					if(!isExtend) {
+						cookiearr.push(obj);
+					}
+					CookieUtil.saveCookie("goods",JSON.stringify(cookiearr));
+				});
+			});
+		</script>
+	</body>
+</html>
