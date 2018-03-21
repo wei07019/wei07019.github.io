@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="iconfont/iconfont.css">
+		<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
+		<script type="text/javascript" src="js/iscroll.js"></script>
+		<title>个人中心</title>
+	</head>
+	<body>
+		<div id="yyw_top">
+			<a class="yyw_setting">
+				
+			</a>
+			<a class="yyw_msg">
+				
+			</a>
+			个人中心
+		</div>
+		<div id="yyw_content1">
+			<div id="yyw_usericon">
+				
+			</div>
+			<p id="yyw_user">
+				您还未登录
+			</p>
+			<a class="login" href="login.html">登录</a>
+			<a class="register" href="register.html">注册</a>
+		</div>
+		<div id="yyw_content2"style="display:none" >
+			<div id="wrapper">
+				<div id="scroller">
+					<ul id="thelist">
+						<li class="yyw_info">
+							<div class="left">
+								<div class="yyw_userimg"></div>								
+							</div>
+							<div class="right">
+								<span class="yyw_username">11111111111</span>
+								<div>
+									<div class="yyw_vip"></div>
+									<div class="yyw_score"></div>
+								</div>								
+							</div>
+						</li>
+						<li class="yyw_dingdan">
+							<div class="yyw_my">
+								<a>我的订单</a>
+							</div>
+							<div class="yyw_all">
+								<a >
+									<p>查看所有订单</p>
+									<b></b>
+								</a>
+								
+							</div>
+						</li>
+						<li class="yyw_paywrap">
+							<div>
+								<div class="iconfont icon-daifukuan"></div>
+								<p>代付款</p>
+							</div>
+							<div>
+								<div class="iconfont icon-shou"></div>
+								<p>待收货</p>
+							</div>
+							<div>
+								<div class="iconfont icon-pingjia"></div>
+								<p>待评价</p>
+							</div>
+							<div>
+								<div class="iconfont icon-yiwancheng"></div>
+								<p>已完成</p>
+							</div>
+							<div>
+								<div class="iconfont icon-tuikuan"></div>
+								<p>退款中</p>
+							</div>						
+						</li>
+						<li class="yyw_space"></li>
+						<li class="yyw_addinfo yyw_gn">
+							<a  href="#">
+								<i class="iconfont icon-wanshanziliao01"></i>
+								<span>完善个人资料</span>
+								<b></b>
+							</a>							
+						</li>
+						<li class="yyw_shoucang yyw_gn">
+							<a  href="#">
+								<i class="iconfont icon-shoucang"></i>
+								<span>收藏管理</span>
+								<b></b>
+							</a>
+						</li>
+						<li class="yyw_msg yyw_gn">
+							<a  href="#">
+								<i class="iconfont icon-xiaoxizhongxin"></i>
+								<span>消息中心</span>
+								<b></b>
+							</a>
+						</li>
+						<li class="yyw_shopcart yyw_gn">
+							<a  href="#">
+								<i class="iconfont icon-gouwuche"></i>
+								<span>我的购物车</span>
+								<b></b>
+							</a>
+						</li>
+						<li class="yyw_gaipad yyw_gn">
+							<a href="#">
+								<i class="iconfont icon-wrench"></i>
+								<span>密码修改</span>
+								<b></b>
+							</a>
+						</li>
+						<li class="yyw_addr yyw_gn">
+							<a href="addr.html">
+								<i class="iconfont icon-dizhi"></i>
+								<span>地址管理</span>
+								<b></b>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">	
+		$("#yyw_content2").height($(window).height() - 50);
+		//登录
+		var username = localStorage.getItem("maiya") ? localStorage.getItem("maiya"):sessionStorage.getItem("maiya");
+		if(username) {
+			$("#yyw_content2").css("display","block");
+			$("#yyw_content1").css("display","none");
+			$("#yyw_content2 .yyw_username").html(username);
+			var psd = localStorage.getItem("maiyap") ? localStorage.getItem("maiyap"):sessionStorage.getItem("maiyap");
+			$.ajax({
+				url: "http://datainfo.duapp.com/shopdata/userinfo.php",
+				type: "get",
+				datatype: "json",
+				data: {status:"login",userID:username,password:psd},
+				success: function(data) {
+					var obj = JSON.parse(data);
+					console.log(obj.userimg_url)
+					$("#yyw_content2 .yyw_userimg").css("background-image","url(" + obj.userimg_url + ")");
+				}
+			})
+		} else {
+			$("#yyw_content2").css("display","none");
+			$("#yyw_content1").css("display","block");
+			
+		}
+		var myScroll,
+			hoverClassRegEx = new RegExp('(^|\\s)iScrollHover(\\s|$)'),
+			removeClass = function () {
+				if (this.hoverTarget) {
+					clearTimeout(this.hoverTimeout);
+					this.hoverTarget.className = this.hoverTarget.className.replace(hoverClassRegEx, '');
+					this.target = null;
+				}
+			};
+		
+		function loaded() {
+			myScroll = new iScroll('wrapper', {
+				onBeforeScrollStart: function (e) {
+					var target = e.target;
+		
+					clearTimeout(this.hoverTimeout);
+		
+					while (target.nodeType != 1) target = target.parentNode;
+		
+					this.hoverTimeout = setTimeout(function () {
+						if (!hoverClassRegEx.test(target.className)) target.className = target.className ? target.className + ' iScrollHover' : 'iScrollHover';
+					}, 80);
+		
+					this.hoverTarget = target;
+					
+					e.preventDefault();
+				},
+				onScrollMove: removeClass,
+				onBeforeScrollEnd: removeClass
+			});
+		}
+		
+		document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+		document.addEventListener('DOMContentLoaded', loaded, false);
+		
+	</script>
+</html>

@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+		<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
+		<link rel="stylesheet" href="iconfont2/iconfont.css" />
+		<title></title>
+		<style>
+			*{
+				margin:0;
+				padding:0;
+			}
+			iframe{
+				width:100vw;
+				border:none;
+			}
+			#index_menu{
+				width:100vw;
+				height:50px;
+				position:fixed;
+				bottom:0;
+				left:0;
+			}
+			#index_menu>div{
+				width:25%;
+				height:100%;
+				line-height:25px;
+				float:left;
+				font-size:1rem;
+				text-align:center;
+			}
+			#index_menu>div:nth-child(1){
+				color:#0f0;
+			}
+		</style>
+	</head>
+	<body>
+		<iframe src="index.html">
+
+		</iframe>
+		<div id="index_menu">
+			<div name="index">
+				<div class="iconfont icon-shouye-copy"></div>
+				<p>首页</p>
+			</div>
+			<div name="login">
+				<div class="iconfont icon-fenlei"></div> 
+				<p>分类</p>
+			</div>
+			<div name="register">
+				<div class="iconfont icon-my-center"></div> 
+				<p>个人中心</p>
+			</div>
+			<div name="iscroll">
+				<div class="iconfont icon-gouwuche"></div> 
+				<p>购物车</p>
+			</div>
+		</div>
+	</body>
+	<script>
+		$(function() {
+			$("iframe").css("height",$(window).height() - 50);
+			$("#index_menu > div").click(function() {
+				$(this).css("color","#0f0").siblings().css("color","#000");
+				$("iframe").attr("src",$(this).attr("name") + ".html");
+				if($(this).attr("name") == "iscroll") {
+					var userId = localStorage.getItem("maiya") ? localStorage.getItem("maiya"):sessionStorage.getItem("maiya");
+					if(userId == null) {
+						alert("请登录")
+						$("#index_menu > div[name='register']").css("color","#0f0").siblings().css("color","#000");
+						$("iframe").attr("src","register.html");
+					}					
+				}
+			});
+		})
+		
+	</script>
+</html>

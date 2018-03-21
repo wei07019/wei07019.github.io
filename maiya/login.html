@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<script src="js/jquery-2.1.0.js"></script>
+		<title></title>
+	</head>
+	<body>
+		<div id="yyw_top">
+			<a class="yyw_setting yyw_left" href="index.html"></a>
+			会员登录
+		</div>
+		<div id="yyw_username" class="yyw_input">			
+			<i class="icon"></i>
+			<span>用户名</span>
+			<input type="text" placeholder="请输入手机号"/>
+			<div class="border"></div>
+		</div>
+		<div id="yyw_password" class="yyw_input">			
+			<i class="icon"></i>
+			<span>密码</span>
+			<input type="password" placeholder="请输入密码"/>
+			<div class="border"></div>
+		</div>
+		<div id="yyw_secwrap">
+			<i id="auto_login"/>自动登录</i>
+			<span id="forgetpsd">忘记密码？</span>
+		</div>
+		<button id="login_btn">登录</button>
+		<p id="login_err"></p>
+	</body>
+	<script>
+		$(function() {
+			$("#yyw_username input").focus();
+			var isLogin = false;
+			$("#login_btn").on("click",function() {
+				var username = $("#yyw_username input").val();
+				var psd=$("#yyw_password input").val();
+				if(/\d{8,11}/.test(username)) {
+					$.ajax({
+						url: "http://datainfo.duapp.com/shopdata/userinfo.php",
+						type: "get",
+						dataType: "json",
+						data: {status:"login",userID:username,password:psd},
+						success: function (data){
+							if(data == 0) {
+								$("#login_err").html("用户名不存在");
+								 show_err();
+							} else if(data == 2) {
+								$("#login_err").html("密码错误");
+								 show_err();
+							} else {
+								$("#login_err").html("登录成功");
+								console.log(data);
+								if(isLogin) {
+									localStorage.setItem("maiya",username);
+									localStorage.setItem("maiyap",psd);
+								} else {
+									localStorage.removeItem("maiya");
+									localStorage.removeItem("maiyap");
+									sessionStorage.setItem("maiya",username);
+									sessionStorage.setItem("maiyap",psd);
+								}
+								window.location.href = "index.html"
+							}
+						}
+					})
+				} else {
+					$("#login_err").html("手机号不合法");
+					 show_err();
+				}
+			});
+			$("#auto_login").click(function() {
+				if(isLogin) {
+					$(this).removeClass("auto_login");
+					isLogin = false;
+				} else {
+					$(this).addClass("auto_login");
+					isLogin = true;
+				}
+			})
+			function show_err() {
+				$("#login_err").fadeIn(100,function() {
+					setTimeout(function() {
+						$("#login_err").fadeOut(300);
+					},1000)
+				});				
+			}
+		})
+	</script>
+</html>

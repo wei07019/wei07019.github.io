@@ -1,0 +1,459 @@
+*{
+	margin:0;
+	padding:0;
+}
+ul,li{
+	list-style:none;
+}
+a{
+	text-decoration:none;
+}
+
+/**********yyw_content1**********/
+#yyw_content1{
+	
+}
+#yyw_top{
+	height:50px;
+	line-height:50px;
+	text-align:center;
+	border-bottom:1px solid #ccc;
+	position:relative;
+	font-size:1.4rem;
+}
+#yyw_top .yyw_setting{
+	display:block;
+	width:30px;
+	height:30px;
+	background:url(../img/grcenter_ic_setting_press.png) no-repeat;
+	background-size:100%;
+	position:absolute;
+	top:10px;
+	left:3vw;
+}
+#yyw_top .yyw_msg{
+	display:block;
+	width:30px;
+	height:30px;
+	background:url(../img/mynews_ic_press.png) no-repeat;
+	background-size:100%;
+	position:absolute;
+	top:10px;
+	right:3vw;
+}
+#yyw_usericon{
+	margin-top:30px;
+	height:100px;
+	background:url(../img/grcenter_pic.png) no-repeat center bottom;
+	background-size:auto 100%;
+}
+#yyw_user{
+	margin-top:30px;
+	height:30px;
+	font-size:1rem;
+	line-height:30px;
+	text-align:center;
+	color:#333;
+}
+#yyw_content1 a{
+	display:block;
+	width:80vw;
+	margin:30px auto 0;
+	height:50px;
+	font-size:1.6rem;
+	
+	line-height:50px;
+	border-radius: 5px;
+	text-align:center;
+}
+#yyw_content1 .login{
+	background:#489925;
+	color:#fff;
+}
+#yyw_content1 .register{
+	margin-top:20px;
+	background:#ccc;
+	color:#333;
+}
+#yyw_content1 .login:active{
+	background:#ccc;
+}
+#yyw_content1 .register:active{
+	background:#489925;
+}
+/**************yyw_content2***************/
+#yyw_content2{
+	position:relative;
+	width:100vw;
+}
+/*#yyw_content2 .iScrollHover {
+	background:#ccc !important;
+}*/
+#yyw_content2 #thelist{
+	width:100vw;
+	height:100%;
+}
+#yyw_content2 #wrapper {
+	position:absolute; z-index:1;
+	top:0;
+	bottom:0;
+	left:0;
+	width:100%;
+	background:#fff;
+	overflow:auto;
+}
+
+#yyw_content2 #scroller {
+	position:absolute; z-index:1;
+/*	-webkit-touch-callout:none;*/
+	-webkit-tap-highlight-color:rgba(0,0,0,0);
+	width:100%;
+	padding:0;
+}
+
+#yyw_content2 #scroller ul {
+	list-style:none;
+	padding:0;
+	margin:0;
+	width:100%;
+	text-align:left;
+}
+
+#yyw_content2 #scroller li {
+	height:50px;
+	line-height:50px;
+	background-color:#fff;
+	font-size:1.4rem;
+	position:relative;
+}
+#yyw_content2 #scroller li + li:after{
+	content:"";
+	height:1px;
+	background:#c8c7cc;
+	width:95vw;
+	position:absolute;
+	bottom:0;
+	right:0;
+}
+#yyw_content2 #myFrame {
+	position:absolute;
+	top:0; left:0;
+}
+#yyw_content2 #scroller .yyw_info{
+	padding: 0 5vw;
+	height:100px;
+	background:#76d24f;
+	overflow:hidden;
+}
+.yyw_info .left{
+	float:left;
+}
+#yyw_content2 .yyw_info .yyw_userimg{
+	margin-top:15px;
+	width:70px;
+	height:70px;
+	background:#fff url(../img/logo_homepage.png) no-repeat center center;
+	background-size:100%;
+	border-radius: 35px;
+	margin-right:3vw;
+}
+.yyw_info .right{
+	overflow:hidden;
+	
+}
+.yyw_info .right .yyw_username{
+	line-height:40px;
+	
+	color:#fff;
+}
+.yyw_info .right .yyw_vip,.yyw_info .right .yyw_score{
+	width:80px;
+	height:30px;
+	background:rgba(0,0,0,0.5);
+	border-radius:30px;
+	text-align:center;
+	line-height:30px;
+}
+.yyw_info .right .yyw_vip{
+	float:left;
+}
+.yyw_info .right .yyw_score{
+	float:right;
+}
+#yyw_content2 #scroller .yyw_dingdan{
+	font-size:1.2rem;
+	height:40px;
+	padding:0 5vw;
+	background:#f7f7f7;
+	line-height:40px;
+}
+.yyw_dingdan .yyw_my{	
+	float:left;
+}
+.yyw_dingdan .yyw_all{
+	float:right;
+}
+.yyw_all p{
+	display:inline-block;
+	color:#4a9a27;
+}
+.yyw_all b{
+	display:inline-block;
+	width:20px;
+	height:20px;
+	background: url(../img/grcenter_ic_ckdd_normal.png) no-repeat;
+	background-size:auto 100%;
+	vertical-align: middle;
+}
+#yyw_content2 #scroller .yyw_paywrap{
+	text-align:center;
+	font-size:0.8rem;
+	line-height:30px;
+	height:60px;
+	display:flex;
+	justify-content: space-around;	
+}
+#yyw_content2 #scroller .yyw_paywrap .iconfont{
+	line-height:30px;
+	font-size:1.4rem;
+}
+#yyw_content2 #scroller .yyw_space{
+	height:15px;
+	background:#f7f7f7;
+}
+#yyw_content2 #scroller .yyw_gn a{
+	display:block;
+	padding:0 5vw;
+	font-size:1.1rem;
+	color:#000;
+}
+#yyw_content2 #scroller .yyw_gn i{
+	display:inline-block;
+	width:30px;
+	height:30px;
+	font-size:26px;
+	line-height:30px;
+	background:#5cd875;
+	text-align:center;
+	color:#fff;
+	vertical-align: middle;
+	margin-right:3vw;
+}
+#yyw_content2 #scroller .yyw_gn b{
+	display:inline-block;
+	width:20px;
+	height:20px;
+	float:right;
+	background: url(../img/xuanze_ic.png) no-repeat center center;
+	margin-top:15px;
+}
+/*用户登录*/
+#yyw_top .yyw_left{
+	background-image:url(../img/back_ic_press.png);
+	background-size:auto 100%;
+}
+.yyw_input{
+	width:94vw;
+	height:50px;
+	line-height:50px;
+	margin: 30px auto 0;
+	position:relative;
+}
+.yyw_input .border{
+	width:100%;
+	height:10px;
+	border:1px solid #ccc;
+	border-top:0;
+	border-radius:0px 0px 5px 5px;
+	position:absolute;
+	bottom:0;
+	left:0;
+}
+.yyw_input .icon{
+	vertical-align: middle;
+	display:inline-block;
+	width:30px;
+	height:30px;
+	margin-left:5vw;
+	background:url(../img/grcenter_pic_yonghuming.png) no-repeat center center;
+	background-size:100%;
+}
+.yyw_input input{
+	font-size:1rem;
+	border:none;
+	outline:none;
+	width:50vw;
+}
+.yyw_input input:focus + .border{
+	border-color:#489925;
+}
+#yyw_password{	
+	margin-top:0;
+}
+#yyw_password .icon{
+	background-image: url(../img/grcenter_pic_mima.png);
+}
+#yyw_password span{
+	padding-right:1rem;
+}
+#yyw_secwrap {
+	width:90vw;
+	margin:20px auto 0;
+	overflow:hidden;
+}
+#login_btn{
+	display:block;
+	border:none;
+	outline:none;
+	width:90vw;
+	height:50px;
+	line-height:50px;
+	font-size:1.4rem;
+	text-align:center;
+	border-radius:5px;
+	margin:30px auto 0;
+	color:#fff;
+	background:#ccc;
+}
+#auto_login{
+	float:left;
+	padding-left:1.4rem;
+	font-size:1rem;
+	background:url(../img/xuanzhongno_ic.png) no-repeat;
+	background-size:auto 100%;
+	font-style:normal;
+}
+#yyw_secwrap .auto_login{
+	background-image:url(../img/xuanzhong_ic.png);
+}
+#forgetpsd{
+	font-size:1rem;
+	float:right;
+}
+
+#login_err{
+	display:none;
+	width:50vw;
+	height:50px;
+	font-size:1.4rem;
+	line-height:50px;
+	text-align:center;
+	background:rgba(0,0,0,0.6);
+	color:#fff;
+	border-radius:5px;
+	position:absolute;
+	bottom:100px;
+	left:50%;
+	margin-left:-25vw;
+}
+
+/**会员注册***/
+#yyw_regname span{
+	padding-right:1rem;
+}
+#yyw_ispassword,#yyw_regpsd{
+	margin-top:0;	
+}
+#yyw_regpsd .icon,#yyw_ispassword .icon{
+	background-image: url(../img/grcenter_pic_mima.png);
+}
+#yyw_regpsd span{
+	padding-right:2rem;
+}
+#register_btn{
+	display:block;
+	border:none;
+	outline:none;
+	width:90vw;
+	height:50px;
+	line-height:50px;
+	font-size:1.4rem;
+	text-align:center;
+	border-radius:5px;
+	margin:30px auto 0;
+	color:#fff;
+	background:#ccc;
+}
+#yyw_fwtk{
+	width:90vw;
+	margin:20px auto 0;
+	text-indent:1.4rem;
+	font-size:1rem;
+	background:url(../img/xuanzhongno_ic.png) no-repeat;
+	background-size:auto 100%;
+	font-style:normal;
+}
+.yyw_fwtk{
+	background-image:url(../img/xuanzhong_ic.png) !important;
+}
+
+#reg_err{
+	display:none;
+	width:50vw;
+	height:50px;
+	font-size:1.4rem;
+	line-height:50px;
+	text-align:center;
+	background:rgba(0,0,0,0.6);
+	color:#fff;
+	border-radius:5px;
+	position:absolute;
+	bottom:100px;
+	left:50%;
+	margin-left:-25vw;
+}
+/***地址管理***/
+#yyw_addrlist{
+	width:100vw;
+	text-align:center;
+}
+#yyw_addrlist .iconfont{
+	font-size:10rem;
+	color:#ccc;
+	line-height:200px;
+}
+#yww_addr_btn{
+	display:block;
+	width:90vw;
+	height:50px;
+	background:#76d24f;
+	position:fixed;
+	bottom:50px;
+	left:5vw;
+	border-radius:5px;
+	text-align:center;
+	line-height:50px;
+	color:#fff;
+	font-size:1.4rem;
+}
+
+.yyw_addrinput{
+	width:100vw;
+	height:50px;
+	line-height:50px;
+}
+.yyw_addrinput span{
+	width:30vw;
+	padding-left:5vw;
+	float:left;
+}
+.yyw_addrinput input{
+	float:left;
+	border:none;
+	outline:none;
+	line-height:50px;
+}
+
+#yyw_isaddr{
+	width:90vw;
+	height:50px;
+	font-size:1.4rem;
+	color:#fff;
+	background:#76d24f;
+	line-height:50px;
+	position:fixed;
+	bottom:50px;
+	left:5vw;
+	border-radius:5px;
+	text-align:center;
+}
