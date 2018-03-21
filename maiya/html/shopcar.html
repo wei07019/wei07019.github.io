@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	    <meta name="format-detection" content="telephone=no">
+		<meta name="format-detection" content="email=no">
+		<link rel="stylesheet" href="../css/shopcss.css" />
+		<link rel="stylesheet" href="../css/animate.min.css" />
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
+
+	    <title></title>
+	    <!--<script type="text/javascript">
+	    	
+	   		document.addEventListener('plusready', function(){
+	   			//console.log("所有plus api都应该在此事件发生后调用，否则会出现plus is undefined。"
+	   			
+	   		});
+	   		
+	    </script>-->
+	</head>
+	<body>
+		<div class="jt-tops">
+			<div></div>
+			<div>购物车</div>
+			<div></div>
+		</div>
+		
+		<div class="jt-content">
+			<div class="jt-goods" id="cartlist">
+				
+				<!--<div class="goods">-->
+					<!--<div class="goods-li">-->
+						<!--<div class="jt-xuanzhong"></div>-->
+						<!--<div class="jt-imgs">-->
+							<!--<img src="img/single_goods.png" />-->
+						<!--</div>-->
+						<!--<div class="jt-datas">-->
+							<!--<div class="jt-data1">-->
+								<!--<div class="jt-data1-1">-->
+									<!--洁柔ＦＡＣＥ黑色系列卫生纸卷纸１０卷-->
+								<!--</div>-->
+								<!--<div class="jt-data1-2">-->
+									<!--<p class="price1">¥29.50</p>-->
+									<!--<p class="price2">¥29.50</p>-->
+								<!--</div>-->
+							<!--</div>-->
+							<!--<div class="jt-data2">-->
+								<!--<div class="jt-data2-1">-->
+									<!--<form>-->
+										<!--<input type="button" id="jian" value="-" />-->
+										<!--<input type="text" value="0" id="txt" />-->
+										<!--<input type="button" id="add" value="+" />-->
+									<!--</form>-->
+								<!--</div>-->
+								<!--<div class="jt-data2-2">有货</div>-->
+								<!--<div class="jt-data2-4"></div>-->
+								<!--<div class="jt-data2-3">-->
+									<!--<div class="delno"><img src="img/delete_ic_normal.png" /></div>-->
+									<!--<div class="delyes"><img src="img/delete_ic_press.png" /></div>-->
+								<!--</div>-->
+							<!--</div>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+				
+				
+				
+			</div>
+		</div>
+		
+		<div class="jt-sellte" id="amout">
+			<div class="quanxuan"></div>
+			<div class="quanxuan-zi">全选</div>
+			<div class="sellte-data">
+				<div class="sellte-data-1">
+					<p class="zong">总金额:</p>
+					<p class="zong-price">¥33.5</p>
+					<p class="have">(含运费)</p>
+				</div>
+				<div class="sellte-data-2">
+					<p class="yunfei">运费</p>
+					<p class="yunfei-price">¥0.0</p>
+					<p class="mianyun">(订单满20元可免运费)</p>
+				</div>
+			</div>
+			<div class="selltes">
+				结算
+				<div class="coument"></div>
+			</div>
+		</div>
+		<div class="ds_bottom">
+			<div class="ds_home">
+				<img src="../img/home_ic_normal.png">
+				<p>首页</p>
+			</div>
+			<div class="ds_divide">
+				<img src="../img/fenlei_ic_normal.png">
+				<p>分类</p>
+			</div>
+			<div class="ds_mine">
+				<img src="../img/grcenter_ic_normal.png">
+				<p>个人中心</p>
+			</div>
+			<div class="ds_shopcar">
+				<img src="../img/gouwuche_ic_press.png">
+				<p>购物车</p>
+			</div>
+		</div>
+		
+		
+		
+		<script type="text/javascript" src="../js/zepto.min.js" ></script>
+		<script type="text/javascript" src="../js/CookieUtil.js" ></script>
+		<script type="text/javascript" src="../js/jquery-1.12.4.min.js" ></script>
+		
+		<script src="../js/handlebars.min.js"></script>
+		
+		<!--<script id="tp" type="text/x-handlebars-template">-->
+			<!--{{#each this}}-->
+				<!--<div class="goods">-->
+					<!--<div class="goods-li">-->
+						<!--<div class="jt-xuanzhong" name="jt-xuanzhong" ></div>-->
+						<!--<div class="jt-imgs">-->
+							<!--<img src="{{this.img}}" />-->
+						<!--</div>-->
+						<!--<div class="jt-datas">-->
+							<!--<div class="jt-data1">-->
+								<!--<div class="jt-data1-1">-->
+									<!--{{this.title}}-->
+								<!--</div>-->
+								<!--<div class="jt-data1-2">-->
+									<!--<p class="price1">{{this.nowprice}}</p>-->
+									<!--<p class="price2">¥29.50</p>-->
+								<!--</div>-->
+							<!--</div>-->
+							<!--<div class="jt-data2">-->
+								<!--<div class="jt-data2-1">-->
+									<!--<form>-->
+										<!--<input type="button" id="jian" value="-" name="btn1" />-->
+										<!--<input type="text" value="{{this.count}}" id="txt" class="txt" />-->
+										<!--<input type="button" id="add" value="+" name="btn2" />-->
+									<!--</form>-->
+								<!--</div>-->
+								<!--<div class="jt-data2-2">有货</div>-->
+								<!--<div class="jt-data2-4"></div>-->
+								<!--<div class="jt-data2-3" name="delete"></div>-->
+							<!--</div>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--{{/each}}-->
+		<!--</script>-->
+		<script type="text/javascript" src="../js/shopcar.js" ></script>
+	</body>
+</html>

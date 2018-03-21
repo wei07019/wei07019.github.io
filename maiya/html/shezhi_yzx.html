@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	    <meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" type="text/css" href="../css/list.css"/>
+	    <title></title>
+	</head>
+	<body>
+		<div id="header_yzx">
+			<a href="my.html"><img id="shezhi_img_yzx" src="../img/back_ic_normal.png"/></a>
+			<span id="shezhi_yzx">设置</span>
+		</div>
+		<div id="content_yzx">
+			<a href="aboutUs_yzx.html"><div><span>关于我们</span><img src="../img/xuanze_ic.png"/></div></a>
+			<div><span>服务协议</span><img src="../img/xuanze_ic.png"/></div>
+			<div><span>联系客服</span><p>028-86523627</p><img src="../img/xuanze_ic.png"/></div>
+			<div>
+				<img id="logo_yzx" src="../img/logo_setting.png"/>
+			</div>	
+			<div>
+				<button id="login_yzx">退出当前登录</button>
+			</div>		
+		</div>
+		
+		
+	</body>
+	<script type="text/javascript" src="../js/jquery-1.12.4.min.js" ></script>
+	<script>
+		$("#content_yzx").height($(window).height() - 50 + "px");
+		$("#login_yzx").click(function() {
+			localStorage.removeItem("maiya");
+			sessionStorage.removeItem("maiya");
+			window.location.href = "my.html";
+		})
+	</script>
+</html>

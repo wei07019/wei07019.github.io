@@ -1,0 +1,144 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="target-densitydpi=320,width=640,user-scalable=no">
+		<title></title>
+		<style>
+
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			body{
+				background: #000;
+			}
+			#box{
+				width: 133px;
+				height: 200px;
+				margin: 250px auto 0;
+				position: relative;
+				transform-style:preserve-3d;
+				perspective: 20000px;
+			}
+			.wrap{
+				width: 133px;
+				height: 200px;
+				/* margin: 250px auto 0; */
+				background: rgba(255,0,0,0.3);
+				position: absolute;
+				transform-style:preserve-3d;
+				perspective: 20000px;
+			}
+			#wrap{
+				transform: rotateX(30deg);
+			}
+			img{
+				width: 133px;
+				height: 200px;
+				position: absolute;
+			}
+		</style>
+		<script></script>
+	</head>
+	<body>
+		<div id="box">
+			<div id="wrap" class="wrap">
+				<img src="img/1.jpg" alt="">
+				<img src="img/2.jpg" alt="">
+				<img src="img/3.jpg" alt="">
+				<img src="img/4.jpg" alt="">
+				<img src="img/5.jpg" alt="">
+				<img src="img/6.jpg" alt="">
+				<img src="img/7.jpg" alt="">
+				<img src="img/8.jpg" alt="">
+				<img src="img/9.jpg" alt="">
+				<img src="img/10.jpg" alt="">
+			</div>
+			<div class="wrap">
+				<img src="img/1.jpg" alt="">
+				<img src="img/2.jpg" alt="">
+				<img src="img/3.jpg" alt="">
+				<img src="img/4.jpg" alt="">
+				<img src="img/5.jpg" alt="">
+				<img src="img/6.jpg" alt="">
+				<img src="img/7.jpg" alt="">
+				<img src="img/8.jpg" alt="">
+				<img src="img/9.jpg" alt="">
+				<img src="img/10.jpg" alt="">
+			</div>
+			<div class="wrap">
+				<img src="img/1.jpg" alt="">
+				<img src="img/2.jpg" alt="">
+				<img src="img/3.jpg" alt="">
+				<img src="img/4.jpg" alt="">
+				<img src="img/5.jpg" alt="">
+				<img src="img/6.jpg" alt="">
+				<img src="img/7.jpg" alt="">
+				<img src="img/8.jpg" alt="">
+				<img src="img/9.jpg" alt="">
+				<img src="img/10.jpg" alt="">
+			</div>
+			<div class="wrap">
+				<img src="img/1.jpg" alt="">
+				<img src="img/2.jpg" alt="">
+				<img src="img/3.jpg" alt="">
+				<img src="img/4.jpg" alt="">
+				<img src="img/5.jpg" alt="">
+				<img src="img/6.jpg" alt="">
+				<img src="img/7.jpg" alt="">
+				<img src="img/8.jpg" alt="">
+				<img src="img/9.jpg" alt="">
+				<img src="img/10.jpg" alt="">
+			</div>
+			<div class="wrap">
+				<img src="img/1.jpg" alt="">
+				<img src="img/2.jpg" alt="">
+				<img src="img/3.jpg" alt="">
+				<img src="img/4.jpg" alt="">
+				<img src="img/5.jpg" alt="">
+				<img src="img/6.jpg" alt="">
+				<img src="img/7.jpg" alt="">
+				<img src="img/8.jpg" alt="">
+				<img src="img/9.jpg" alt="">
+				<img src="img/10.jpg" alt="">
+			</div>			
+		</div>
+	</body>
+	<script>
+		var rotateX = 45;
+		var rotateY = 0;
+		var imgs = document.getElementsByTagName("img");
+		var wrap = document.getElementById("box");
+		var wraps = document.getElementsByClassName("wrap");
+		for(var i = 0,len = imgs.length; i < len;i++) {
+			var c = i % 10;
+			imgs[i].style.transform = "rotateY(" + c * 36 + "deg) translateZ(400px) rotateZ(90deg)";		
+		}
+		for(var i = 0,len = wraps.length; i < len;i++) { 
+			wraps[i].style.transform = "rotateX(" + i * 36 + "deg)";
+		}
+		document.onmousedown = function() {
+			 document.onmousemove = function(event) {
+				var cx = event.clientX;
+				var cy = event.clientY;
+				rotateX = cy / 300 * 360;
+				rotateY = cx / 1000 * 360
+				wrap.style.transform = "rotateX(" + rotateX + "deg) rotateY(" + rotateY + "deg)";
+			}
+		}
+		document.onmouseup = function() {
+			document.onmousemove = null;
+		}
+		
+					
+		document.onmouseup = function() {
+			document.onmousemove = null;
+		}
+		var timer = setInterval(autoplay,30);
+		function autoplay() {
+			rotateY += 1;
+			wrap.style.transform = "rotateX(" + rotateX + "deg) rotateY(" + rotateY + "deg)";
+		}
+	</script>
+</html>
