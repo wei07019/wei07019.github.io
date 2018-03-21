@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			body{
+				background: #000;
+			}
+			#wrap{
+				width: 133px;
+				height: 200px;
+				margin: 250px auto 0;
+				background: rgba(255,0,0,0.3);
+				position: relative;
+				transform-style:preserve-3d;
+				perspective: 20000px;				
+				transform: rotateX(0deg) rotateY(0deg);
+			}
+			img{
+				width: 133px;
+				height: 200px;
+				position: absolute;
+				transition: all 1s;
+				-webkit-box-reflect: below 3px -webkit-linear-gradient(transparent,transparent 20%,rgba(255,255,255,.6));
+			}
+		</style>
+		<script></script>
+	</head>
+	<body>
+		<div id="wrap" ondragstart="return false">
+			<img src="img/1.jpg" alt="">
+			<img src="img/2.jpg" alt="">
+			<img src="img/3.jpg" alt="">
+			<img src="img/4.jpg" alt="">
+			<img src="img/5.jpg" alt="">
+			<img src="img/6.jpg" alt="">
+			<img src="img/7.jpg" alt="">
+			<img src="img/8.jpg" alt="">
+			<img src="img/9.jpg" alt="">
+			<img src="img/10.jpg" alt="">
+			<img src="img/11.jpg" alt="">
+		</div>
+	</body>
+	<script>
+		var rotateX = -30;
+		var rotateY = 0;
+		var imgs = document.getElementsByTagName("img");
+		var wrap = document.getElementById("wrap");
+		setTimeout(function() {
+			for(var i = 0,len = imgs.length; i < len;i++) {
+				(function(i) {
+					setTimeout(function() {
+					imgs[i].style.transform = "rotateY(" + i * 32.7 + "deg) translateZ(300px)";
+					},100 * (10 - i));	
+				})(i);			
+			}
+		},1000)
+		
+		document.onmousedown = function() {
+			document.onmousemove = function(event) {
+				var cx = event.clientX;
+				var cy = event.clientY;
+				rotateX = cy / 300 * 360;
+				rotateY = cx / 1000 * 360
+				wrap.style.transform = "rotateX(" + rotateX + "deg) rotateY(" + rotateY + "deg)";
+			}			
+		}
+		document.onmouseup = function() {
+			document.onmousemove = null;
+		}
+		var timer = setInterval(autoplay,30);
+		function autoplay() {
+			rotateY += 1;
+			wrap.style.transform = "rotateX(" + rotateX + "deg) rotateY(" + rotateY + "deg)";
+		}
+	</script>
+</html>
